@@ -10,16 +10,15 @@ datasource db {
 }
 
 model User {
-    id              Int      @id @default(autoincrement())
-    createdAt       DateTime @default(now())
-    updatedAt       DateTime @updatedAt
-    email           String   @unique
-    username        String   @unique
-    password_digest String
-    session_token   String   @unique
-    posts           Post[]
-    berries         Berry[]
-    reviews         Review[]
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    email     String   @unique
+    username  String   @unique
+    auth0Id   String   @unique @default("")
+    posts     Post[]
+    berries   Berry[]
+    reviews   Review[]
 }
 
 model Post {

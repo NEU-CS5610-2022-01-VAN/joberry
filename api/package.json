@@ -1,6 +1,24 @@
 {
+  "name": "joberry_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prisma": "^3.10.0"
+  },
   "dependencies": {
-    "@prisma/client": "3.11.1",
-    "prisma": "^3.11.1"
+    "@prisma/client": "^3.10.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "morgan": "^1.10.0"
   }
 }
+
