@@ -1,0 +1,1 @@
+Joberry is a forum where people can share their job hunting experiences and their interview progress
