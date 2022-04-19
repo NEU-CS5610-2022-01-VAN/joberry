@@ -1,1 +1,15 @@
-Joberry is a forum where people can share their job hunting experiences and their interview progress
+# umi project
+
+## Getting Started
+
+Install dependencies,
+
+```bash
+$ yarn
+```
+
+Start the dev server,
+
+```bash
+$ yarn start
+```
