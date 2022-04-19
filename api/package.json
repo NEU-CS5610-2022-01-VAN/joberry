@@ -5,20 +5,20 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dp": "prisma db push && gcloud app deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "prisma": "^3.10.0"
+    "prisma": "^3.12.0"
   },
   "dependencies": {
-    "@prisma/client": "^3.10.0",
+    "@prisma/client": "^3.12.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "morgan": "^1.10.0"
   }
 }
-

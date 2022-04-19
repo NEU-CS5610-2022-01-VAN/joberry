@@ -65,7 +65,6 @@ app.get("/posts", requireAuth, async (req, res) => {
 // creates a post
 app.post("/posts", requireAuth, async (req, res) => {
   const auth0Id = req.user.sub;
-
   const { title, body } = req.body;
   const newItem = await prisma.post.create({
     data: {
@@ -74,6 +73,5 @@ app.post("/posts", requireAuth, async (req, res) => {
       author: { connect: { auth0Id } },
     },
   });
-
   res.status(201).json(newItem);
 });

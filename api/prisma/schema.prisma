@@ -18,7 +18,7 @@ model User {
     auth0Id   String   @unique @default("")
     posts     Post[]
     berries   Berry[]
-    reviews   Review[]
+    reviews   Comment[]
 }
 
 model Post {
@@ -31,7 +31,7 @@ model Post {
     body       String   @db.Text
     category   Category @relation(fields: [categoryId], references: [id])
     categoryId Int
-    reviews    Review[]
+    reviews    Comment[]
     berries    Berry[]
     tags       Tag[]
 }
@@ -54,7 +54,7 @@ model Tag {
     postId    Int
 }
 
-model Review {
+model Comment {
     id              Int      @id @default(autoincrement())
     createdAt       DateTime @default(now())
     updatedAt       DateTime @updatedAt
@@ -64,8 +64,8 @@ model Review {
     user            User     @relation(fields: [userId], references: [id])
     userId          Int
     parentId        Int?
-    parentReview    Review?  @relation("ReviewHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-    childrenReviews Review[] @relation("ReviewHistory")
+    parentComment    Comment?  @relation("CommentHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    childrenComments Comment[] @relation("CommentHistory")
 }
 
 model Category {
