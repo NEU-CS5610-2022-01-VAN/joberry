@@ -108,7 +108,7 @@ app.get("/posts/:id", requireAuth, async (req, res) => {
       berries: true,
     },
   });
-  res.json(post);
+  res.status(201).json(post);
 });
 
 // updates a post by id
@@ -124,7 +124,7 @@ app.put("/posts/:id", requireAuth, async (req, res) => {
       body,
     },
   });
-  res.json(updatedPost);
+   res.status(201).json(updatedPost);
 });
 
 // deletes a post item by id
@@ -136,6 +136,28 @@ app.delete("/posts/:id", requireAuth, async (req, res) => {
     },
   });
   res.json(deletedPost);
+});
+
+// searches posts by title or content
+app.post("/posts-search", requireAuth, async (req, res) => {
+  const { search } = req.body;
+  const searchResult = await prisma.post.findMany({
+    where: {
+      OR: [
+        {
+          title: {
+            contains: search,
+          },
+        },
+        {
+          body: {
+            contains: search,
+          }
+        },
+      ],
+    },
+  });
+   res.status(201).json(searchResult);
 });
 
 // ============================= BERRIES ==============================
@@ -205,9 +227,9 @@ app.get("/comments", requireAuth, async (req, res) => {
       user: true,
       childrenComments: {
         include: {
-          childrenComments: true
-        }
-      }
+          childrenComments: true,
+        },
+      },
     },
   });
   res.status(201).json(comments);
@@ -219,8 +241,8 @@ app.delete("/comments/:id", requireAuth, async (req, res) => {
   const deletedComments = await prisma.comment.deleteMany({
     where: {
       id,
-      parentId
-    }
-  })
+      parentId,
+    },
+  });
   res.status(201).json(deletedComments);
-})
+});

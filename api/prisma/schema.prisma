@@ -1,6 +1,6 @@
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
+    previewFeatures = ["referentialIntegrity", "fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -35,6 +35,10 @@ model Post {
     body      String    @db.Text
     comments  Comment[]
     berries   Berry[]
+
+    
+    @@fulltext([body])
+    @@fulltext([title])
 }
 
 model Berry {
