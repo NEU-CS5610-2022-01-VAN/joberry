@@ -1,1 +1,1 @@
-export { useAuthToken, AuthTokenProvider } from './auth_token_context';
+export { useAuthToken, AuthTokenProvider } from './AuthTokenContext';

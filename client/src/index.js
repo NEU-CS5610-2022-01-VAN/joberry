@@ -1,12 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route} from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { AuthTokenProvider } from "@/utils";
 import { Provider as MobxProvider } from "mobx-react";
 import * as stores from "@/stores";
-
+import { Landing, Home, VerifyUser, AppBase } from "@/pages";
+import "@/setup.less";
 import "@/styles/index.less";
+
+const requestedScopes = [
+  "read:user",
+  "edit:user",
+  "delete:user",
+  "write:user",
+];
 
 function RequireAuth({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -29,7 +37,20 @@ root.render(
       >
         <AuthTokenProvider>
           <BrowserRouter>
-            <Routes></Routes>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/verify-user" element={<VerifyUser />} />
+              <Route
+                path="/"
+                element={
+                  <RequireAuth>
+                    <AppBase/>
+                  </RequireAuth>
+                }
+              >
+                <Route path="home" element={<Home/>}/>
+              </Route>
+            </Routes>
           </BrowserRouter>
         </AuthTokenProvider>
       </Auth0Provider>
