@@ -1,7 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import App from './App';
 import "@/styles/index.less";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import {AuthTokenProvider} from '@/utils';
+
+function RequireAuth({ children }) {
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (!isLoading && !isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

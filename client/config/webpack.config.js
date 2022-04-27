@@ -457,8 +457,6 @@ module.exports = function(webpackEnv) {
                   options: {
                     modifyVars: { "@primary-color": "#EF5DA8" },
                     javascriptEnabled: true,
-                    plugins: [require("less-plugin-glob")],
-                    paths: [path.resolve(__dirname, "../src/styles")],
                     additionalData: `@import "@/styles/global.less";`,
                   },
                 },
