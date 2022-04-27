@@ -10,27 +10,31 @@ datasource db {
 }
 
 model User {
-    id        Int       @id @default(autoincrement())
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    email     String    @unique
-    username  String    @unique
-    auth0Id   String    @unique @default("")
-    posts     Post[]
-    berries   Berry[]
-    comments  Comment[]
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    email     String   @unique
+    username  String   @unique
+    auth0Id   String   @unique @default("")
+    about     String?  @db.VarChar(255)
+    company   String?  @db.VarChar(255)
+    occupation String?
+    gender     Int?
+    posts      Post[]
+    berries    Berry[]
+    comments   Comment[]
 }
 
 model Post {
-    id         Int       @id @default(autoincrement())
-    createdAt  DateTime  @default(now())
-    updatedAt  DateTime  @updatedAt
-    author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
-    authorId   Int
-    title      String    @db.VarChar(255)
-    body       String    @db.Text
-    comments   Comment[]
-    berries    Berry[]
+    id        Int       @id @default(autoincrement())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId  Int
+    title     String    @db.VarChar(255)
+    body      String    @db.Text
+    comments  Comment[]
+    berries   Berry[]
 }
 
 model Berry {
@@ -56,4 +60,3 @@ model Comment {
     parentComment    Comment?  @relation("CommentHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
     childrenComments Comment[] @relation("CommentHistory")
 }
-
