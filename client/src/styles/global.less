@@ -1,0 +1,9 @@
+.to-vw (@px, @attr: width) {
+    @vw: (@px / 1920) * 100;
+    @{attr}:~"@{vw}vw";
+}
+
+.to-vh(@px, @attr: height) {
+    @vh: (@px / 1080) * 100;
+    @{attr}:~"@{vh}vh";
+}
