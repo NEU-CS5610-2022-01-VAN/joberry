@@ -77,7 +77,7 @@ app.get("/profile", requireAuth, async (req, res) => {
 
 // ============================= POSTS ==================================
 // get all posts
-app.get("/posts", async (req, res) => {
+app.get("/posts", requireAuth, async (req, res) => {
   const posts = await prisma.post.findMany();
   res.json(posts);
 });

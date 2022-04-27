@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dp": "prisma db push && gcloud app deploy"
+    "dp": "prisma db push && gcloud app deploy",
+    "db":"prisma db push",
+    "api": "gcloud app deploy" 
   },
   "keywords": [],
   "author": "",
