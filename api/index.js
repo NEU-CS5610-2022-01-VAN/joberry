@@ -75,6 +75,17 @@ app.get("/profile", requireAuth, async (req, res) => {
   res.json(user);
 });
 
+// get user information
+
+app.get("/users/:id", requireAuth, async(req, res)=> {
+  const id = req.params.id;
+  const user = await prisma.user.findUnique({
+    where: {
+      id
+    }
+  })
+})
+
 // ============================= POSTS ==================================
 // get all posts
 app.get("/posts", requireAuth, async (req, res) => {
@@ -245,4 +256,8 @@ app.delete("/comments/:id", requireAuth, async (req, res) => {
     },
   });
   res.status(201).json(deletedComments);
+});
+
+app.listen(8000, () => {
+  console.log("Server running on http://localhost:8000 🎉 🚀");
 });
