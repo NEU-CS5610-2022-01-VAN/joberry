@@ -14,6 +14,10 @@ const requestedScopes = [
   "edit:user",
   "delete:user",
   "write:user",
+  "read:post",
+  "edit:post",
+  "delete:post",
+  "write:post",
 ];
 
 function RequireAuth({ children }) {
@@ -49,6 +53,7 @@ root.render(
                 }
               >
                 <Route path="home" element={<Home/>}/>
+                
               </Route>
             </Routes>
           </BrowserRouter>
