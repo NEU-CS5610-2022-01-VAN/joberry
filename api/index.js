@@ -30,7 +30,6 @@ const prisma = new PrismaClient();
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
-
 // ============================= USER ===================================
 // verify user status, if not registered in our database we will create it
 app.post("/verify-user", requireAuth, async (req, res) => {
