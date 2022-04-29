@@ -246,3 +246,7 @@ app.delete("/comments/:id", requireAuth, async (req, res) => {
   });
   res.status(201).json(deletedComments);
 });
+
+app.listen(8000, () => {
+  console.log("Server running on http://localhost:8000  ");
+});

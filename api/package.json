@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node index.js",
     "dp": "prisma db push && gcloud app deploy",
-    "db":"prisma db push",
-    "api": "gcloud app deploy" 
+    "db": "prisma db push",
+    "api": "gcloud app deploy"
   },
   "keywords": [],
   "author": "",
@@ -17,10 +17,16 @@
     "prisma": "^3.12.0"
   },
   "dependencies": {
-    "@prisma/client": "^3.12.0",
-    "body-parser": "^1.19.0",
+    "@prisma/client": "^3.11.0",
+    "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "express-jwt": "^6.1.1",
+    "express-jwt-authz": "^2.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.5",
+    "jwt-decode": "^3.1.2",
     "morgan": "^1.10.0"
   }
 }
