@@ -83,6 +83,7 @@ app.get("/users/:id", requireAuth, async(req, res)=> {
       id
     }
   })
+  res.json(user);
 })
 
 // ============================= POSTS ==================================
