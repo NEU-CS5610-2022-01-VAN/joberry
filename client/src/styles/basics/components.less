@@ -1,7 +1,8 @@
 .header-bar {
     display: flex;
-    .to-vh(65);
+    .to-vh(76);
     align-items: center;
+    justify-content: space-between;
     .to-vw(20, padding);
 
     background-color: white;
@@ -10,4 +11,16 @@
 
 .header-nav {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .to-vw(1650);
+}
+
+.search-bar {
+    background-color: @base-10;
+    input {
+        background-color: @base-10;
+    }
+    border-radius: 235px;
+    border-color: @base-10;
 }

@@ -1,34 +1,29 @@
 import React, { useEffect } from "react";
-import { useAuthToken } from "@/utils";
+import { useAuthToken, useStore } from "@/utils";
 import { useNavigate } from "react-router-dom";
-import {Spin} from 'antd'
-export default function VerifyUser() {
+import { Spin } from "antd";
+import { observer } from "mobx-react";
+import { autorun } from "mobx";
+
+const VerifyUser = observer(() => {
   const navigate = useNavigate();
   const { accessToken } = useAuthToken();
+  const { userStore } = useStore;
+  
+  useEffect(() => {
+    if (accessToken) userStore.verifyUser();
+  }, [accessToken]);
 
   useEffect(() => {
-    async function verifyUser() {
-      const data = await fetch(`${process.env.REACT_APP_API_URL}/verify-user`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const user = await data.json();
-
-      if (user.auth0Id) {
-        navigate("/home");
-      }
-    }
-
-    if (accessToken) {
-      verifyUser();
-    }
-  }, [accessToken, navigate]);
+    autorun(() => {
+      if (userStore.currentUser.auth0Id) navigate("/home");
+    });
+  }, []);
 
   return (
     <div className="loading">
-      <Spin />
+      <Spin size="large" />
     </div>
   );
-}
+});
+export default VerifyUser;
