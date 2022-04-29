@@ -1,6 +1,6 @@
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
+    previewFeatures = ["referentialIntegrity", "fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -10,67 +10,77 @@ datasource db {
 }
 
 model User {
-    id        Int      @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    email     String   @unique
-    username  String   @unique
-    auth0Id   String   @unique @default("")
-    posts     Post[]
-    berries   Berry[]
-    reviews   Review[]
+    id         Int       @id @default(autoincrement())
+    createdAt  DateTime  @default(now())
+    updatedAt  DateTime  @updatedAt
+    email      String    @unique
+    name       String?
+    auth0Id    String    @unique @default("")
+    about      String?   @db.VarChar(255)
+    company    String?   @db.VarChar(255)
+    occupation String?
+    gender     Int?
+    posts      Post[]
+    berries    Berry[]
+    comments   Comment[]
+    followedBy Follows[] @relation("follower")
+    following  Follows[] @relation("following")
 }
 
 model Post {
-    id         Int      @id @default(autoincrement())
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
-    author     User     @relation(fields: [authorId], references: [id])
-    authorId   Int
-    title      String   @db.VarChar(255)
-    body       String   @db.Text
-    category   Category @relation(fields: [categoryId], references: [id])
-    categoryId Int
-    reviews    Review[]
-    berries    Berry[]
-    tags       Tag[]
+    id        Int       @id @default(autoincrement())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId  Int
+    title     String    @db.VarChar(255)
+    body      String    @db.Text
+    comments  Comment[]
+    berries   Berry[]
+    tags      Tag[]
+
+    @@fulltext([body])
+    @@fulltext([title])
 }
 
 model Berry {
     id        Int      @id @default(autoincrement())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    user      User     @relation(fields: [userId], references: [id])
+    user      User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
     userId    Int
-    post      Post     @relation(fields: [postId], references: [id])
+    post      Post     @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
     postId    Int
+}
+
+model Comment {
+    id               Int       @id @default(autoincrement())
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
+    content          String    @db.VarChar(255)
+    post             Post      @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    postId           Int
+    user             User      @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    userId           Int
+    parentId         Int?
+    parentComment    Comment?  @relation("CommentHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    childrenComments Comment[] @relation("CommentHistory")
+}
+
+model Follows {
+    follower    User @relation("follower", fields: [followerId], references: [id])
+    followerId  Int
+    following   User @relation("following", fields: [followingId], references: [id])
+    followingId Int
+
+    @@id([followerId, followingId])
 }
 
 model Tag {
     id        Int      @id @default(autoincrement())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    post      Post     @relation(fields: [postId], references: [id])
+    name      String
     postId    Int
-}
-
-model Review {
-    id              Int      @id @default(autoincrement())
-    createdAt       DateTime @default(now())
-    updatedAt       DateTime @updatedAt
-    content         String   @db.VarChar(255)
-    post            Post     @relation(fields: [postId], references: [id])
-    postId          Int
-    user            User     @relation(fields: [userId], references: [id])
-    userId          Int
-    parentId        Int?
-    parentReview    Review?  @relation("ReviewHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-    childrenReviews Review[] @relation("ReviewHistory")
-}
-
-model Category {
-    id        Int      @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
     posts     Post[]
 }

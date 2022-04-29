@@ -1,0 +1,14 @@
+.to-vw (@px, @attr: width) {
+    @vw: (@px / 1920) * 100;
+    @{attr}:~"@{vw}vw";
+}
+
+.to-vh(@px, @attr: height) {
+    @vh: (@px / 1080) * 100;
+    @{attr}:~"@{vh}vh";
+}
+
+@berry-10: #F8F1F5;
+@berry-60: #FCDDEC;
+@berry-80: #F178B6;
+@berry-100: #EF5DA8;
