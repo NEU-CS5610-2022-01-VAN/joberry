@@ -13,4 +13,4 @@ const requireAuth = jwt({
   algorithms: ["RS256"],
 });
 
-export default requireAuth
+export default requireAuth;
