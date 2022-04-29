@@ -55,7 +55,6 @@ export default function HeaderBar() {
       <div>
         <Avatar
           className="cursor-pointer"
-          shape="square"
           icon={<UserOutlined />}
           size="large"
           onClick={() => navigate("/profile")}

@@ -8,7 +8,7 @@ import { autorun } from "mobx";
 const VerifyUser = observer(() => {
   const navigate = useNavigate();
   const { accessToken } = useAuthToken();
-  const { userStore } = useStore;
+  const { userStore } = useStore();
   
   useEffect(() => {
     if (accessToken) userStore.verifyUser();

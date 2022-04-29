@@ -4,6 +4,8 @@ import { userAPI } from "@/api";
 const nullUser = {
   name: null,
   email: null,
+  id: null,
+  auth0Id: null
 };
 const nullProfile = {
   ...nullUser,

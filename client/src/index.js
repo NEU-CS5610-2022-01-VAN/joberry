@@ -60,7 +60,7 @@ root.render(
                 <Route path="discover" element={"discover"} />
                 <Route path="tags" element={"tags"} />
                 <Route path="profile" element={"profile"} />
-                <Route path="posts" element={"posts"} />
+                <Route path="posts/:id" element={"posts"} />
                 <Route path="profile/settings" element={<ProfileSettings />}/>
               </Route>
             </Routes>
