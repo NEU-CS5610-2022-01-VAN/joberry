@@ -10,19 +10,21 @@ datasource db {
 }
 
 model User {
-    id        Int      @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    email     String   @unique
-    username  String   @unique
-    auth0Id   String   @unique @default("")
-    about     String?  @db.VarChar(255)
-    company   String?  @db.VarChar(255)
+    id         Int       @id @default(autoincrement())
+    createdAt  DateTime  @default(now())
+    updatedAt  DateTime  @updatedAt
+    email      String    @unique
+    name       String?
+    auth0Id    String    @unique @default("")
+    about      String?   @db.VarChar(255)
+    company    String?   @db.VarChar(255)
     occupation String?
     gender     Int?
     posts      Post[]
     berries    Berry[]
     comments   Comment[]
+    followedBy Follows[] @relation("follower")
+    following  Follows[] @relation("following")
 }
 
 model Post {
@@ -35,8 +37,8 @@ model Post {
     body      String    @db.Text
     comments  Comment[]
     berries   Berry[]
+    tags      Tag[]
 
-    
     @@fulltext([body])
     @@fulltext([title])
 }
@@ -63,4 +65,22 @@ model Comment {
     parentId         Int?
     parentComment    Comment?  @relation("CommentHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
     childrenComments Comment[] @relation("CommentHistory")
+}
+
+model Follows {
+    follower    User @relation("follower", fields: [followerId], references: [id])
+    followerId  Int
+    following   User @relation("following", fields: [followingId], references: [id])
+    followingId Int
+
+    @@id([followerId, followingId])
+}
+
+model Tag {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    name      String
+    postId    Int
+    posts     Post[]
 }
