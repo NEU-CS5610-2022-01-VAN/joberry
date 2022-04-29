@@ -8,6 +8,7 @@ import * as stores from "@/stores";
 import { Landing, Home, VerifyUser, AppBase } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
+import ProfileSettings from "./pages/ProfileSettings";
 
 const requestedScopes = [
   "read:user",
@@ -53,7 +54,7 @@ root.render(
                 }
               >
                 <Route path="home" element={<Home/>}/>
-                
+                <Route path="profile/settings" element={<ProfileSettings />}/>
               </Route>
             </Routes>
           </BrowserRouter>
