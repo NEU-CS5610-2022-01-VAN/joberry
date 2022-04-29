@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import  { userRoutes, postRoutes, activityRoutes } from './routes/index.js'
+
 const app = express();
 
 app.use(cors());
@@ -19,8 +20,4 @@ app.use("/activities", activityRoutes);
 
 app.listen(8000, () => {
   console.log("Server running on http://localhost:8000 🎉 🚀");
-});
-
-app.listen(8000, () => {
-  console.log("Server running on http://localhost:8000  ");
 });

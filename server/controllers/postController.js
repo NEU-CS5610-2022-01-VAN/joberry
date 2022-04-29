@@ -77,6 +77,20 @@ const searchPost = asyncHandler(async (req, res) => {
             contains: search,
           },
         },
+        {
+          author: {
+            name: {
+              contains: search,
+            },
+          },
+        },
+        {
+          author: {
+            email: {
+              contains: search,
+            },
+          },
+        },
       ],
     },
   });

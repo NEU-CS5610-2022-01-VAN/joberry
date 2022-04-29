@@ -1,4 +1,4 @@
-import prisma from '../models/index.js'
+import prisma from "../models/index.js";
 import asyncHandler from "express-async-handler";
 
 // verify user status, if not registered in our database we will create it
@@ -10,12 +10,16 @@ const verifyUser = asyncHandler(async (req, res) => {
     where: {
       auth0Id,
     },
+    select: {
+      name: true,
+      email: true,
+      auth0Id: true,
+    },
   });
 
   if (user) {
     res.send(user);
-  }
-  else {
+  } else {
     const newUser = await prisma.user.create({
       data: {
         email,
@@ -43,6 +47,31 @@ const getProfile = asyncHandler(async (req, res) => {
   res.send(user);
 });
 
+// update user profile
+const updateProfile = asyncHandler(async (req, res) => {
+  const auth0Id = req.user.sub;
+  const user = await prisma.user.update({
+    where: {
+      auth0Id,
+    },
+    data: {
+      ...req.body,
+    },
+  });
+  res.send(user);
+});
+
+// delete account of the current user
+const deleteAccount = asyncHandler(async (req, res) => {
+  const auth0Id = req.user.sub;
+  const user = await prisma.user.delete({
+    where: {
+      auth0Id,
+    },
+  });
+  res.send(user);
+});
+
 // get user information
 const getUserInfo = asyncHandler(async (req, res) => {
   const id = req.params.id;
@@ -54,5 +83,10 @@ const getUserInfo = asyncHandler(async (req, res) => {
   res.send(user);
 });
 
-
-export default { verifyUser, getProfile, getUserInfo };
+export default {
+  verifyUser,
+  getProfile,
+  updateProfile,
+  deleteAccount,
+  getUserInfo,
+};
