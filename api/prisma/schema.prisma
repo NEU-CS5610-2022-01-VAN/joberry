@@ -39,7 +39,6 @@ model Post {
     berries   Berry[]
     tags      Tag[]
 
-
     @@fulltext([body])
     @@fulltext([title])
 }
