@@ -1,9 +1,25 @@
 import { makeAutoObservable, flow } from "mobx";
 import { userAPI } from "@/api";
 
+const nullUser = {
+  name: null,
+  email: null,
+};
+const nullProfile = {
+  ...nullUser,
+  company: null,
+  about: null,
+  gender: null,
+  occupation: null,
+  posts:null,
+  berries: null,
+  comments: null,
+};
+
 class UserStore {
   loading = false;
-  currentUser = {};
+  currentUser = nullUser;
+  userProfile = nullProfile;
   otherUser = {};
 
   constructor() {
@@ -26,7 +42,7 @@ class UserStore {
     try {
       const data = yield userAPI.getProfile();
       if (data) {
-        this.currentUser = data;
+        this.userProfile = data;
       }
     } catch (error) {}
     this.loading = false;
@@ -43,12 +59,12 @@ class UserStore {
     this.loading = false;
   });
 
-  updateProfile = flow(function* (params) {
+  updateProfile = flow(function* () {
     this.loading = true;
     try {
-      const data = yield userAPI.updateProfile(params);
+      const data = yield userAPI.updateProfile(this.userProfile);
       if (data) {
-        this.currentUser = data;
+        this.userProfile = data;
       }
     } catch (error) {}
     this.loading = false;
@@ -59,7 +75,8 @@ class UserStore {
     try {
       const data = yield userAPI.deleteAccount();
       if (data) {
-        this.currentUser = data;
+        this.currentUser = nullUser;
+        this.userProfile = nullProfile;
       }
     } catch (error) {}
     this.loading = false;

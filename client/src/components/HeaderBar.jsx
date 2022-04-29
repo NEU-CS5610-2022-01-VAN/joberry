@@ -14,10 +14,11 @@ export default function HeaderBar() {
     <div className="header-bar">
       <div className="align-center">
         <img
-          className="mg-r-40"
+          className="mg-r-40 cursor-pointer"
           height="25vh"
           src="/images/Joberry.png"
           alt="joberry"
+          onClick={() => navigate("/home")}
         />
         <div className="header-nav">
           <div>
@@ -53,6 +54,7 @@ export default function HeaderBar() {
       </div>
       <div>
         <Avatar
+          className="cursor-pointer"
           shape="square"
           icon={<UserOutlined />}
           size="large"
