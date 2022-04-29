@@ -1,6 +1,6 @@
 import express from "express";
 import { activityController } from '../controllers/index.js';
-import requireAuth from "../middleware/index.js";
+import {requireAuth} from "../middleware/index.js";
 
 const activityRouter = express.Router();
 
