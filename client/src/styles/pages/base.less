@@ -6,15 +6,23 @@
     justify-content: center;
 }
 
-.app-content {
-    position: absolute;
-    left: 16.61%;
-    right: 20.83%;
-    top: 7.52%;
-    bottom: -0.54%;
-    .to-vw(1081);
-    .to-vh(1039);
+body {
+    overflow: hidden;
+}
+
+.app-base {
+    display: flex;
     justify-content: center;
-    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 93vh;
+    top: 7vh;
+    overflow: auto;
+    padding: 1vw;
+}
+
+.app-content {
+    width: 65vw;
+    min-height: 150vh;
     background-color: white;
 }
