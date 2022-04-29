@@ -20,3 +20,7 @@ app.use("/activities", activityRoutes);
 app.listen(8000, () => {
   console.log("Server running on http://localhost:8000 🎉 🚀");
 });
+
+app.listen(8000, () => {
+  console.log("Server running on http://localhost:8000  ");
+});
