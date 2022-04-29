@@ -14,7 +14,15 @@ export default function Landing() {
             <img src="/images/Joberry.png" alt="Joberry" srcset="" />
           </div>
           <div className="mg-t-20">
-            <Button block shape="round" size="large" onClick={!isAuthenticated ? loginWithRedirect : ()=> navigate("/home")} loading={isLoading} >
+            <Button
+              block
+              shape="round"
+              size="large"
+              onClick={
+                !isAuthenticated ? loginWithRedirect : () => navigate("/home")
+              }
+              loading={isLoading}
+            >
               {!isAuthenticated ? "LOG IN" : "ENTER"}
             </Button>
             <p className="mg-t-8"> Your job hunting journey starts NOW ...</p>

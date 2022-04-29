@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { useAuthToken } from "@/utils";
 import { useNavigate } from "react-router-dom";
 import {Spin} from 'antd'
+
 export default function VerifyUser() {
   const navigate = useNavigate();
   const { accessToken } = useAuthToken();
 
   useEffect(() => {
     async function verifyUser() {
-      const data = await fetch(`${process.env.REACT_APP_API_URL}/verify-user`, {
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/users/verify-user`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,

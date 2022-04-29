@@ -2,12 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Navigate, Routes, Route} from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
-import { AuthTokenProvider } from "@/utils";
+import { AuthTokenProvider, configureInterceptors } from "@/utils";
 import { Provider as MobxProvider } from "mobx-react";
 import * as stores from "@/stores";
 import { Landing, Home, VerifyUser, AppBase } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
+
+configureInterceptors();
 
 const requestedScopes = [
   "read:user",
@@ -48,12 +50,15 @@ root.render(
                 path="/"
                 element={
                   <RequireAuth>
-                    <AppBase/>
+                    <AppBase />
                   </RequireAuth>
                 }
               >
-                <Route path="home" element={<Home/>}/>
-                
+                <Route path="home" element={<Home />} />
+                <Route path="discover" element={"discover"} />
+                <Route path="tags" element={"tags"} />
+                <Route path="profile" element={"profile"} />
+                <Route path="posts" element={"posts"} />
               </Route>
             </Routes>
           </BrowserRouter>
