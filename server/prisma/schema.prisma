@@ -81,6 +81,5 @@ model Tag {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     name      String
-    postId    Int
     posts     Post[]
 }

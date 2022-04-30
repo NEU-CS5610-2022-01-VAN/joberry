@@ -4,6 +4,8 @@ import { userAPI } from "@/api";
 const nullUser = {
   name: null,
   email: null,
+  id: null,
+  auth0Id: null
 };
 const nullProfile = {
   ...nullUser,
@@ -24,6 +26,10 @@ class UserStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  updateProfile = (newProfile) => {
+    this.userProfile = newProfile;
   }
 
   verifyUser = flow(function* () {

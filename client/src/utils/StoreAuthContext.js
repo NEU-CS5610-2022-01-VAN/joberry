@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { configureAuthHeader } from ".";
+import * as stores from "@/stores";
 
-const AuthTokenContext = React.createContext();
+const StoreAuthContext = React.createContext();
 
-function AuthTokenProvider({ children }) {
+function StoreAndAuthProvider({ children }) {
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [accessToken, setAccessToken] = useState();
-  const value = { accessToken, setAccessToken };
+  const value = { accessToken, setAccessToken, ...stores };
   let token = "";
   useEffect(() => {
     const getAccessToken = async () => {
@@ -24,13 +25,14 @@ function AuthTokenProvider({ children }) {
       getAccessToken();
     }
   }, [getAccessTokenSilently, isAuthenticated]);
+
   return (
-    <AuthTokenContext.Provider value={value}>
+    <StoreAuthContext.Provider value={value}>
       {children}
-    </AuthTokenContext.Provider>
+    </StoreAuthContext.Provider>
   );
 }
 
-const useAuthToken = () => useContext(AuthTokenContext);
+const useStoreAndAuth = () => useContext(StoreAuthContext);
 
-export { useAuthToken, AuthTokenProvider };
+export { useStoreAndAuth, StoreAndAuthProvider };
