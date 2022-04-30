@@ -18,6 +18,8 @@ app.use(requireAuth);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/activities", activityRoutes);
+app.use("/tags", tagsRoutes);
+
 
 app.listen(8000, () => {
   console.log("Server running on http://localhost:8000 🎉 🚀");
