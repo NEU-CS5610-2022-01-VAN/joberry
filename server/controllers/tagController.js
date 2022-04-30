@@ -1,6 +1,6 @@
 import prisma from "../models/index.js";
 import asyncHandler from "express-async-handler";
-import postController from "../controllers/postController.js"
+import postController from "./postController.js"
 
 
 // CRUD
