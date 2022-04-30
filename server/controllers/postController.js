@@ -14,6 +14,7 @@ const createNewPost = asyncHandler(async (req, res) => {
       title,
       body,
       author: { connect: { auth0Id } },
+      tags,
     },
   });
   res.send(newPost);
@@ -29,6 +30,7 @@ const getPostDetail = asyncHandler(async (req, res) => {
     include: {
       comments: true,
       berries: true,
+      tags: true,
     },
   });
   res.send(post);
@@ -45,6 +47,7 @@ const updatePost = asyncHandler(async (req, res) => {
     data: {
       title,
       body,
+      tags, // update tags
     },
   });
   res.send(updatedPost);
@@ -97,6 +100,23 @@ const searchPost = asyncHandler(async (req, res) => {
   res.send(searchResult);
 });
 
+// search posts by tags
+const searchPostByTags = asyncHandler(async (req, res) => {
+  const { search } = req.body;
+  const searchResult = await prisma.post.findMany({
+    where: {
+      tags: {
+        name: {
+          contains: search
+        }
+      }
+    }
+  });
+  res.send(searchResult);
+});
+
+
+
 export default {
   getAllPosts,
   createNewPost,
@@ -104,4 +124,5 @@ export default {
   updatePost,
   deletePost,
   searchPost,
+  searchPostByTags
 };

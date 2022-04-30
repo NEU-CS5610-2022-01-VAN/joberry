@@ -14,6 +14,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       name: true,
       email: true,
       auth0Id: true,
+      id: true,
     },
   });
 

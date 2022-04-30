@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import {Icon} from '@/components'
+// import {useStoreAndAuth} from '@/utils'
+import { Icon } from "@/components";
 
 export default function HeaderBar() {
   const { logout } = useAuth0();
@@ -55,7 +56,6 @@ export default function HeaderBar() {
       <div>
         <Avatar
           className="cursor-pointer"
-          shape="square"
           icon={<UserOutlined />}
           size="large"
           onClick={() => navigate("/profile")}
