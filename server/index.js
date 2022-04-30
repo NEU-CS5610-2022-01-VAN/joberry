@@ -4,7 +4,8 @@ import cors from "cors";
 import {
   userRoutes,
   postRoutes,
-  activityRoutes,
+  commentRoutes,
+  berryRoutes,
   tagRoutes,
   followRoutes,
 } from "./routes/index.js";
@@ -21,7 +22,8 @@ app.get("/ping", (req, res) => {
 });
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
-app.use("/activities", activityRoutes);
+app.use("/comments", commentRoutes);
+app.use("/berries", berryRoutes);
 app.use("/tags", tagRoutes);
 app.use("/followings", followRoutes);
 
