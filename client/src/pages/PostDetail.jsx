@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
-import { PostItem } from "@/components";
 import { Divider } from 'antd';
-import { Comment } from '@/components'
-import { AddComment } from '@/components';
-import { AvatarActivity } from "@/components";
+import { Comment, AddComment, AvatarActivity } from "@/components";
 import { useStoreAndAuth } from "@/utils";
 import { observer } from "mobx-react";
 import { useParams } from 'react-router-dom';
@@ -23,7 +20,7 @@ const PostDetails = observer(() => {
         user: {
             name: `${postDetail.author.name}`
         },
-        time: `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`,
+        time: `${date.getUTCMonth()+1}/${date.getDate()}/${date.getFullYear()}`,
         action: "posted",
     }
 
@@ -52,7 +49,7 @@ const PostDetails = observer(() => {
                     {postDetail.comments.map(item=> <Comment key={item.id} comment={item}/>)}
                 </div>
                 <div className='comment-adder'>
-                    <AddComment></AddComment>
+                    <AddComment/>
                 </div>
             </div>
         </div>
