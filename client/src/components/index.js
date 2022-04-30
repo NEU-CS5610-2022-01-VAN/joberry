@@ -12,3 +12,5 @@ export {
   $info,
   $warning,
 } from "./Messages";
+export {default as ProfileHeader} from './ProfileHeader'
+export {default as Profile} from './Profile'

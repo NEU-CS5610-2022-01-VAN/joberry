@@ -21,15 +21,15 @@ const PostItem = (props) => {
         <div className="post-item-lower">
           <div className="mg-r-20">
             <Icon className="mg-r-8" type={"icon-berry-gray"} />
-            {post._count.berries || 0}
+            {post._count?.berries || 0}
           </div>
           <div>
             <Icon className="mg-r-8" type={"icon-comment"} />
-            {post._count.comments || 0}
+            {post._count?.comments || 0}
           </div>
         </div>
       </div>
-      <div>{post.image ? <img src={post.image} alt="" srcset="" /> : ""}</div>
+      <div>{post.image ? <img src={post.image} alt="" /> : ""}</div>
     </div>
   );
 };
