@@ -21,11 +21,11 @@ const PostItem = (props) => {
         <div className="post-item-lower">
           <div className="mg-r-20">
             <Icon className="mg-r-8" type={"icon-berry-gray"} />
-            {post.berryCount || 0}
+            {post._count.berries || 0}
           </div>
           <div>
             <Icon className="mg-r-8" type={"icon-comment"} />
-            {post.commentCount || 0}
+            {post._count.comments || 0}
           </div>
         </div>
       </div>
