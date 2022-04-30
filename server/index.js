@@ -19,6 +19,7 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/activities", activityRoutes);
 app.use("/tags", tagsRoutes);
+app.use("/followings", followRoutes);
 
 
 app.listen(8000, () => {
