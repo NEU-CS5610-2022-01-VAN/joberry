@@ -18,7 +18,7 @@ const createNewTag = asyncHandler(async (req, res) => {
 
 // updates a Tag by id
 const updateTag = asyncHandler(async (req, res) => {
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
     const { name } = req.body;
     const updatedTag = await prisma.Tag.update({
       where: {
@@ -33,7 +33,7 @@ const updateTag = asyncHandler(async (req, res) => {
 
 // deletes a Tag item by id
 const deleteTag = asyncHandler(async (req, res) => {
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
     const deletedTag = await prisma.Tag.delete({
       where: {
         id,

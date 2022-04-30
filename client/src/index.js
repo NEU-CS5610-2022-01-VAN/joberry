@@ -11,6 +11,7 @@ import {
   ProfileSettings,
   NotFound,
   NewPost,
+  PostDetails
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -55,7 +56,7 @@ root.render(
               <Route index path="home" element={<Home />} />
               <Route path="discover" element={"discover"} />
               <Route path="tags" element={"tags"} />
-              <Route path="posts/:id" element={"posts"} />
+              <Route path="posts/:id" element={<PostDetails />} />
               <Route path="404" element={<NotFound />} />
               {/* Auth routes down here! */}
               <Route

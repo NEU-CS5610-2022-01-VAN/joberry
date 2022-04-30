@@ -75,7 +75,7 @@ const deleteAccount = asyncHandler(async (req, res) => {
 
 // get user information
 const getUserInfo = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const user = await prisma.user.findUnique({
     where: {
       id,
