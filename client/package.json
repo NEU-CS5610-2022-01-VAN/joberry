@@ -6,6 +6,7 @@
     "@ant-design/icons": "^4.7.0",
     "@auth0/auth0-react": "^1.10.0",
     "@babel/core": "7.2.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.16.7",
     "@svgr/webpack": "4.1.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -138,6 +139,9 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-optional-chaining"
     ]
   }
 }

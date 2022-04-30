@@ -1,6 +1,9 @@
 import axios from "axios";
 
 const activityAPI = {
+  getCommentsOfPost(id) {
+    return axios.get(`/activities/comments/${id}`);
+  },
   createNewBerry(params) {
     return axios.post("/activities/berries", params);
   },

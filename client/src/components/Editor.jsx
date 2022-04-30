@@ -25,7 +25,7 @@ const Editor = (props) => {
       setOptions={editorOptions}
       {...props}
       placeholder="Please enter your content here"
-      height="58vh"
+      height="59vh"
     />
   );
 };

@@ -10,7 +10,7 @@ export default function SignIn() {
       <div className="landing-page">
         <div style={{ width: "20vw", textAlign: "center" }}>
           <div>
-            <img src="/images/Joberry.png" alt="Joberry" srcset="" />
+            <img src="/images/Joberry.png" alt="Joberry" />
           </div>
           <div className="mg-t-20">
             <Button
@@ -24,7 +24,7 @@ export default function SignIn() {
             >
               {!isAuthenticated ? "SIGN IN or SIGN UP" : "ENTER"}
             </Button>
-            <p className="mg-t-8"> SIGN IN or SIGN UP to UNLOCK this feature ...</p>
+            <p className="mg-t-8"> to UNLOCK more...</p>
           </div>
         </div>
       </div>
