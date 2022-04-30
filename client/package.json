@@ -59,6 +59,8 @@
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
+    "suneditor": "^2.43.1",
+    "suneditor-react": "^3.4.0",
     "terser-webpack-plugin": "1.2.2",
     "url-loader": "1.1.2",
     "web-vitals": "^2.1.4",

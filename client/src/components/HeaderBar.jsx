@@ -47,7 +47,7 @@ export default function HeaderBar() {
               suffix={<Icon type="icon-search" />}
               size="large"
             />
-            <Button type="primary" shape="round" size="large">
+            <Button type="primary" shape="round" size="large" onClick={()=> navigate("/posts/new")}>
               New Post
             </Button>
           </div>

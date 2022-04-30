@@ -7,12 +7,11 @@ import { useStoreAndAuth } from "@/utils";
 
 const Home = observer(() => {
   const { postStore } = useStoreAndAuth();
-  const { accessToken } = useStoreAndAuth();
 
   useEffect(() => {
-    if (accessToken) postStore.getAllPosts();
+    postStore.getAllPosts();
     return () => {};
-  }, [accessToken]);
+  }, []);
 
   return (
     <>
@@ -42,7 +41,7 @@ const Home = observer(() => {
       </div>
       <div className="white-container mg-t-12">
         {postStore.postList.map((item) => (
-          <PostItem post={item} />
+          <PostItem post={item} key={item.id} />
         ))}
       </div>
     </>

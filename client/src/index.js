@@ -2,11 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
-import { Landing, Home, VerifyUser, AppBase, ProfileSettings, PostDetails } from "@/pages";
+import { StoreAndAuthProvider, configureInterceptors } from "@/utils";
 import {
-  StoreAndAuthProvider,
-  configureInterceptors,
-} from "@/utils";
+  SignIn,
+  Home,
+  VerifyUser,
+  AppBase,
+  ProfileSettings,
+  NotFound,
+  NewPost,
+  PostDetails
+} from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
 
@@ -26,7 +32,7 @@ const requestedScopes = [
 function RequireAuth({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
   if (!isLoading && !isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/sign-in" replace />;
   }
   return children;
 }
@@ -44,22 +50,38 @@ root.render(
       <StoreAndAuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/sign-in" element={<SignIn />} />
             <Route path="/verify-user" element={<VerifyUser />} />
-            <Route
-              path="/"
-              element={
-                <RequireAuth>
-                  <AppBase />
-                </RequireAuth>
-              }
-            >
-              <Route path="home" element={<Home />} />
+            <Route path="/" element={<AppBase />}>
+              <Route index path="home" element={<Home />} />
               <Route path="discover" element={"discover"} />
               <Route path="tags" element={"tags"} />
-              <Route path="profile" element={"profile"} />
               <Route path="posts/:id" element={<PostDetails />} />
-              <Route path="profile/settings" element={<ProfileSettings />} />
+              <Route path="404" element={<NotFound />} />
+              {/* Auth routes down here! */}
+              <Route
+                path="profile"
+                element={<RequireAuth>"profile"</RequireAuth>}
+              />
+              <Route
+                path="posts/new"
+                element={
+                  <RequireAuth>
+                    <NewPost />
+                  </RequireAuth>
+                }
+              />
+
+              <Route
+                path="profile/settings"
+                element={
+                  <RequireAuth>
+                    <ProfileSettings />
+                  </RequireAuth>
+                }
+              />
+              <Route path="/" element={<Navigate to="/home" replace />} />
+              <Route path="*" element={<Navigate to="/404" replace />} />
             </Route>
           </Routes>
         </BrowserRouter>
