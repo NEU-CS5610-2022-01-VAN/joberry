@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, Input, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { PostItem } from "@/components";
+import { observer } from "mobx-react";
+import { useStoreAndAuth } from "@/utils";
 
-export default function Home() {
+const Home = observer(() => {
+  const { postStore } = useStoreAndAuth();
+  const { accessToken } = useStoreAndAuth();
 
+  useEffect(() => {
+    if (accessToken) postStore.getAllPosts();
+    return () => {};
+  }, [accessToken]);
 
-  const post = {
-    title:
-      "Just got an interview with AMAZIN and GEEGLE, let me share my experiences",
-    content:
-      "<div>Chenru Wu: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in mattis purus, eget maximus urna. Duis pulvinar non nunc id rhoncus. Suspendisse mi leo, hendrerit sit amet volutpat eget, imperdiet ut leo. Morbi ac pellentesque leo. Vivamus varius mauris sit amet malesuada placerat. </div>",
-  };
   return (
     <>
       <div className="white-container">
@@ -39,8 +41,11 @@ export default function Home() {
         </div>
       </div>
       <div className="white-container mg-t-12">
-        <PostItem post={post}/>
+        {postStore.postList.map((item) => (
+          <PostItem post={item} />
+        ))}
       </div>
     </>
   );
-}
+});
+export default Home;

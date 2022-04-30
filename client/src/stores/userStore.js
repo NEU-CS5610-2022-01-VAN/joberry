@@ -28,6 +28,10 @@ class UserStore {
     makeAutoObservable(this);
   }
 
+  updateProfile = (newProfile) => {
+    this.userProfile = newProfile;
+  }
+
   verifyUser = flow(function* () {
     this.loading = true;
     try {

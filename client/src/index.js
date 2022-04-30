@@ -1,8 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Navigate, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
-import { AuthTokenProvider, configureInterceptors, StoreProvider } from "@/utils";
+import {
+  StoreAndAuthProvider,
+  configureInterceptors,
+  StoreProvider,
+} from "@/utils";
 import { Landing, Home, VerifyUser, AppBase, ProfileSettings } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -19,7 +23,6 @@ const requestedScopes = [
   "delete:post",
   "write:post",
 ];
-
 
 function RequireAuth({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -39,34 +42,29 @@ root.render(
       audience={process.env.REACT_APP_AUTH0_AUDIENCE}
       scope={requestedScopes.join(" ")}
     >
-      <AuthTokenProvider>
-        <StoreProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route
-                path="/verify-user"
-                element={<VerifyUser />}
-              />
-              <Route
-                path="/"
-                element={
-                  <RequireAuth>
-                    <AppBase />
-                  </RequireAuth>
-                }
-              >
-                <Route path="home" element={<Home />} />
-                <Route path="discover" element={"discover"} />
-                <Route path="tags" element={"tags"} />
-                <Route path="profile" element={"profile"} />
-                <Route path="posts/:id" element={"posts"} />
-                <Route path="profile/settings" element={<ProfileSettings />}/>
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </StoreProvider>
-      </AuthTokenProvider>
+      <StoreAndAuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/verify-user" element={<VerifyUser />} />
+            <Route
+              path="/"
+              element={
+                <RequireAuth>
+                  <AppBase />
+                </RequireAuth>
+              }
+            >
+              <Route path="home" element={<Home />} />
+              <Route path="discover" element={"discover"} />
+              <Route path="tags" element={"tags"} />
+              <Route path="profile" element={"profile"} />
+              <Route path="posts/:id" element={"posts"} />
+              <Route path="profile/settings" element={<ProfileSettings />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </StoreAndAuthProvider>
     </Auth0Provider>
   </React.StrictMode>
 );

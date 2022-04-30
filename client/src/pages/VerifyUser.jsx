@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAuthToken, useStore } from "@/utils";
+import { useStoreAndAuth } from "@/utils";
 import { useNavigate } from "react-router-dom";
 import { Spin } from "antd";
 import { observer } from "mobx-react";
@@ -7,9 +7,9 @@ import { autorun } from "mobx";
 
 const VerifyUser = observer(() => {
   const navigate = useNavigate();
-  const { accessToken } = useAuthToken();
-  const { userStore } = useStore();
-  
+  const { accessToken } = useStoreAndAuth();
+  const { userStore } = useStoreAndAuth();
+
   useEffect(() => {
     if (accessToken) userStore.verifyUser();
   }, [accessToken]);

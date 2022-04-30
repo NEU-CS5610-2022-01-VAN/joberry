@@ -8,7 +8,7 @@ const PostItem = (props) => {
     navigate(`/posts/${post.id}`);
   };
   return (
-    <div className="post-item">
+    <div className="post-item" key={post.id}>
       <div className="mg-r-32">
         <div
           onClick={jumpToPost}
@@ -16,7 +16,7 @@ const PostItem = (props) => {
           style={{ minHeight: "15vh" }}
         >
           <h4>{post.title}</h4>
-          <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+          <div>{post.body}</div>
         </div>
         <div className="post-item-lower">
           <div className="mg-r-20">
