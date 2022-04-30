@@ -11,4 +11,6 @@ postRouter.post("/", postController.createNewPost);
 postRouter.put("/:id", postController.updatePost);
 postRouter.delete("/:id", postController.deletePost);
 
+postRouter.post("/search", postController.searchPostByTags); // newly added by Eric
+
 export default postRouter;
