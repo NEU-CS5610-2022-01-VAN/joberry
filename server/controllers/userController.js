@@ -17,7 +17,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       email: true,
       auth0Id: true,
       id: true,
-      picture: true
+      picture: true,
     },
   });
 
@@ -29,7 +29,7 @@ const verifyUser = asyncHandler(async (req, res) => {
         email,
         auth0Id,
         name,
-        picture
+        picture,
       },
     });
     res.send(newUser);
@@ -78,7 +78,7 @@ const deleteAccount = asyncHandler(async (req, res) => {
 });
 
 // get user information
-const getUserInfo = asyncHandler(async (req, res) => {
+const getUserDetail = asyncHandler(async (req, res) => {
   const id = parseInt(req.params.id);
   const user = await prisma.user.findUnique({
     where: {
@@ -93,5 +93,5 @@ export default {
   getProfile,
   updateProfile,
   deleteAccount,
-  getUserInfo,
+  getUserDetail,
 };

@@ -35,7 +35,7 @@ const ProfilieDetail = observer(() => {
       </div>
       <div style={{float:"right", position:"absolute", top:"11vh", right:"1vw"}}>
         <Button type="primary" ghost size="large" shape="round" onClick={()=>navigate("/profile/settings")}>
-          Edit Profile
+          Settings
         </Button>
       </div>
     </div>

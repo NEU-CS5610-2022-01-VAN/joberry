@@ -14,13 +14,13 @@ model User {
     createdAt  DateTime   @default(now())
     updatedAt  DateTime   @updatedAt
     email      String     @unique
-    name       String?
-    auth0Id    String    @unique @default("")
+    auth0Id    String     @unique @default("")
+    name       String?    @db.VarChar(255)
     picture    String?
-    about      String?   @db.VarChar(255)
-    company    String?   @db.VarChar(255)
-    occupation String?
-    gender     Int?
+    about      String?    @db.VarChar(255)
+    company    String?    @db.VarChar(255)
+    occupation String?    @db.VarChar(255)
+    gender     String?    @db.VarChar(255)
     posts      Post[]
     berries    Berry[]
     comments   Comment[]

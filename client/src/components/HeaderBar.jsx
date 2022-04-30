@@ -34,7 +34,7 @@ export default function HeaderBar() {
           <div>
             <Input
               placeholder="Search for posts"
-              style={{ width: "16vw" }}
+              style={{ width: "20vw" }}
               className="mg-r-12 search-bar"
               suffix={<Icon type="icon-search" />}
               size="large"
@@ -50,12 +50,14 @@ export default function HeaderBar() {
           </div>
         </div>
       </div>
-      <div>
-        <Avatar
-          user={userStore.currentUser}
-          goToProfile
-          size="large"
-        />
+      <div className="align-center">
+        {!userStore.currentUser.id ? (
+          <h5 className="mg-r-12 mg-t-8 cursor-default">Guest User</h5>
+        ) : (
+          ""
+        )}
+
+        <Avatar user={userStore.currentUser} goToProfile size="large" />
       </div>
     </div>
   );

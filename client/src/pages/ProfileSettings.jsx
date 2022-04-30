@@ -1,48 +1,50 @@
 import React, { useEffect } from "react";
-import { UserInfo, Avatar, Icon } from "@/components";
-import { Divider, Button } from "antd";
+import { ProfileTerm, Avatar, $success } from "@/components";
+import { Button, Popconfirm } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useStoreAndAuth } from "@/utils";
+const infoItems = ["gender", "email", "occupation", "company", "about"];
 
 export default function ProfileSettings() {
-  const { userStore } = useStoreAndAuth();
-  const { logout, user, isAuthenticated } = useAuth0();
-
+  const { userStore, accessToken } = useStoreAndAuth();
+  const { logout, user } = useAuth0();
   useEffect(() => {
-    if (isAuthenticated) userStore.getProfile();
+    if (accessToken) userStore.getProfile();
     return () => {};
-  }, [isAuthenticated]);
-
+  }, [accessToken]);
+  const confirmLogout = () => {
+    logout({ returnTo: window.location.origin })
+    setTimeout(() => $success("Logged Out!"), 1000);
+  }
   return (
-    <div className="white-container">
-      <div className="maininfo">
-        <div>
-          <Avatar size={64} user={user} goToProfile />
+    <div className="white-container" style={{ minHeight: "88vh" }}>
+      <div
+        className="align-center"
+        style={{ marginLeft: "4vw", marginTop: "5vh" }}
+      >
+        <div className="mg-r-40">
+          <Avatar size={80} user={user} goToProfile />
         </div>
-        <div style={{ fontSize: "18px" }}>USER NAME</div>
-        <div>
-          <Icon type="icon-edit" />
-        </div>
+        <h4 className="mg-r-24">{user?.name}</h4>
       </div>
-      <div>
-        <UserInfo label="GENDER">MALE</UserInfo>
-        <Divider />
-        <UserInfo label="EMAIL">abc123@gmail.com</UserInfo>
-        <Divider />
-        <UserInfo label="OCCUPATION">student</UserInfo>
-        <Divider />
-        <UserInfo label="COMPANY">Northeastern University</UserInfo>
-        <Divider />
-        <UserInfo label="ABOUT">2021 fall</UserInfo>
-      </div>
-      <div className="logout-btn">
-        <Button
-          type="primary"
-          shape="round"
-          onClick={() => logout({ returnTo: window.location.origin })}
+      <div style={{ marginLeft: "10vw" }}>
+        {infoItems.map((term, idx) => (
+          <ProfileTerm term={term} key={idx} />
+        ))}
+        <Popconfirm
+          title="Are you sure you want to log out?"
+          onConfirm={confirmLogout}
+          okText="Yes"
+          cancelText="No"
         >
-          LOG OUT
-        </Button>
+          <Button
+            style={{ marginTop: "8vh", marginLeft: "-0.4vw" }}
+            type="primary"
+            shape="round"
+          >
+            LOG OUT
+          </Button>
+        </Popconfirm>
       </div>
     </div>
   );
