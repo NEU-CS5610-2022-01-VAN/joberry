@@ -13,12 +13,12 @@ const tabs = [
 
 const Profile = (props) => {
 
-  const { user, activity } = props;
+  const { user, activity, goToProfile } = props;
   const [key, setKey] = useState("0");
   const displayRecords = key === "0" ? activity : activity.filter(item => item.type === parseInt(key));
   return (
     <div>
-      <ProfileHeader user={user} />
+      <ProfileHeader user={user} goToProfile={goToProfile} />
       <div className="white-container mg-t-12">
         <Tabs activeKey={key} onChange={setKey}>
           {tabs.map((item) => (

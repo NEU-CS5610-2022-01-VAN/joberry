@@ -5,7 +5,8 @@ const nullUser = {
   name: null,
   email: null,
   id: null,
-  auth0Id: null
+  auth0Id: null,
+  picture:""
 };
 const nullProfile = {
   ...nullUser,
@@ -33,8 +34,7 @@ class UserStore {
     this.userProfile = newProfile;
   }
 
-  logInUser(user) {
-    this.currentUser = user;
+  logInUser() {
     this.loggedIn = true;
   }
 

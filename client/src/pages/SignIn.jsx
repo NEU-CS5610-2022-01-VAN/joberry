@@ -24,7 +24,7 @@ export default function SignIn() {
             >
               {!isAuthenticated ? "SIGN IN or SIGN UP" : "ENTER"}
             </Button>
-            <p className="mg-t-8"> SIGN IN or SIGN UP to UNLOCK this feature ...</p>
+            <p className="mg-t-8"> to UNLOCK more...</p>
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ const PostItem = (props) => {
           style={{ minHeight: "15vh" }}
         >
           <h4>{post.title}</h4>
-          <div>{post.body}</div>
+          <div className="show-ellipsis" dangerouslySetInnerHTML={{__html: post.body}}></div>
         </div>
         <div className="post-item-lower">
           <div className="mg-r-20">

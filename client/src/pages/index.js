@@ -6,3 +6,4 @@ export { default as ProfileSettings } from "./ProfileSettings";
 export { default as NotFound } from "./NotFound";
 export {default as NewPost} from './NewPost'
 export {default as ProfileDetail} from './ProfileDetail'
+export {default as UserDetail} from './UserDetail'
