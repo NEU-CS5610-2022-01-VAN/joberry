@@ -4,6 +4,14 @@ import { postAPI } from "@/api";
 const emptyPost = {
   body: null,
   title: null,
+  _count: {
+    berries: 0,
+    comments: 0
+  },
+  author: {
+    name: null
+  },
+  comments:[]
 };
 
 class PostStore {
@@ -29,6 +37,7 @@ class PostStore {
     try {
       const data = yield postAPI.getPostDetail(id);
       if (data) this.postDetail = data;
+      console.log(data);
     } catch (error) {}
     this.loading = false;
   });

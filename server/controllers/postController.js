@@ -27,16 +27,22 @@ const createNewPost = asyncHandler(async (req, res) => {
 });
 
 const getPostDetail = asyncHandler(async (req, res) => {
-  console.log(prisma);
-  const id = req.params.id;
+  const id = parseInt(parseInt(req.params.id));
   const post = await prisma.post.findUnique({
     where: {
       id,
     },
     include: {
-      comments: true,
-      berries: true,
+      comments: {
+        include: {
+          user: true
+        }
+      },
       tags: true,
+        _count: {
+          select: { comments: true, berries: true },
+        },
+      author: true,
     },
   });
   res.send(post);
@@ -44,7 +50,7 @@ const getPostDetail = asyncHandler(async (req, res) => {
 
 // updates a post by id
 const updatePost = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const { title, body } = req.body;
   const updatedPost = await prisma.post.update({
     where: {
@@ -61,7 +67,7 @@ const updatePost = asyncHandler(async (req, res) => {
 
 // deletes a post item by id
 const deletePost = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const deletedPost = await prisma.post.delete({
     where: {
       id,

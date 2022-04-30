@@ -78,7 +78,7 @@ const getCommentsOfPost = asyncHandler( async (req, res) => {
 
 //delete a comment
 const deleteComment = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const id = parseInt(req.params.id);
   const deletedComments = await prisma.comment.deleteMany({
     where: {
       id,

@@ -1,19 +1,12 @@
 import React from 'react'
-import { Comment, Avatar } from 'antd';
+import { Comment  } from 'antd';
+import { Avatar } from '@/components';
 
-const ExampleComment = ({ children }) => (
+const ExampleComment = ({ comment }) => (
   <Comment
-    actions={[<span key="comment-nested-reply-to">Reply to</span>]}
-    author={<a>Han Solo</a>}
-    avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
-    content={
-      <p>
-        We supply a series of design principles, practical patterns and high quality design
-        resources (Sketch and Axure).
-      </p>
-    }
-  >
-    {children}
+    author={comment.user.name}
+    // avatar={<Avatar user={comment.user}  />}
+    content={<p>{comment.content}</p>}>
   </Comment>
 );
 
