@@ -1,28 +1,32 @@
 import { message } from "antd";
 
 export const $success = (msg) => {
+  message.destroy(msg);
   message.success({
     content: msg,
+    key: msg,
     style: {
       marginTop: "10vh",
     },
   });
 };
 
-// info对应删除成功message
 export const $info = (msg) => {
+  message.destroy(msg);
   message.info({
     content: msg,
+    key: msg,
     style: {
       marginTop: "10vh",
     },
   });
 };
 
-// warning对应不可xx
 export const $warning = (msg) => {
+  message.destroy(msg);
   message.warning({
     content: msg,
+    key: msg,
     style: {
       marginTop: "10vh",
     },
@@ -30,8 +34,10 @@ export const $warning = (msg) => {
 };
 
 export const $error = (msg) => {
+  message.destroy(msg);
   message.error({
     content: msg,
+    key: msg,
     style: {
       marginTop: "10vh",
     },

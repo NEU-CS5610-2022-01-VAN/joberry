@@ -22,10 +22,11 @@ function StoreAndAuthProvider({ children }) {
     };
 
     if (isAuthenticated) {
-      getAccessToken();
-    }
+      getAccessToken().then(()=> {
+        stores.userStore.logInUser()
+      });
+    } 
   }, [getAccessTokenSilently, isAuthenticated]);
-
   return (
     <StoreAuthContext.Provider value={value}>
       {children}

@@ -54,6 +54,7 @@
     display: flex;
     .to-vw(12, margin-top);
     position: relative;
+    border-bottom: 1px solid @base-10;
 }
 
 .post-item-lower {
@@ -63,4 +64,11 @@
     .to-vh(20);
     bottom: 0;
     color: @base-60;
+    .to-vh(16, margin-bottom);
+}
+
+.show-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

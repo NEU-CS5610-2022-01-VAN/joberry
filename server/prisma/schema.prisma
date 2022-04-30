@@ -15,9 +15,10 @@ model User {
     updatedAt  DateTime   @updatedAt
     email      String     @unique
     name       String?
-    auth0Id    String     @unique @default("")
-    about      String?    @db.VarChar(255)
-    company    String?    @db.VarChar(255)
+    auth0Id    String    @unique @default("")
+    picture    String?
+    about      String?   @db.VarChar(255)
+    company    String?   @db.VarChar(255)
     occupation String?
     gender     Int?
     posts      Post[]
