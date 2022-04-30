@@ -114,7 +114,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+        "^@/(.*)": "<rootDir>/src/$1"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -129,8 +130,8 @@
       "node"
     ],
     "watchPlugins": [
-      "/Users/Xinyi/Desktop/0_CS5610/assignments/assignment-03-group-2/client/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/Xinyi/Desktop/0_CS5610/assignments/assignment-03-group-2/client/node_modules/jest-watch-typeahead/testname.js"
+      "<rootDir>/node_modules/jest-watch-typeahead/filename.js",
+      "<rootDir>/node_modules/jest-watch-typeahead/testname.js"
     ]
   },
   "babel": {
@@ -138,4 +139,5 @@
       "react-app"
     ]
   }
+
 }
