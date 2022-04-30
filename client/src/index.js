@@ -12,8 +12,12 @@ import {
   ProfileSettings,
   NotFound,
   NewPost,
+<<<<<<< HEAD
   ProfileDetail,
   UserDetail,
+=======
+  PostDetails
+>>>>>>> development
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -59,8 +63,8 @@ root.render(
               <Route index path="home" element={<Home />} />
               <Route path="discover" element={"discover"} />
               <Route path="tags" element={"tags"} />
-              <Route path="posts/:id" element={"posts"} />
               <Route path="users/:id" element={<UserDetail />} />
+              <Route path="posts/:id" element={<PostDetails />} />
               <Route path="404" element={<NotFound />} />
               {/* Auth routes down here! */}
               <Route
