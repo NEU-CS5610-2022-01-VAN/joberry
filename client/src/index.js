@@ -12,12 +12,9 @@ import {
   ProfileSettings,
   NotFound,
   NewPost,
-<<<<<<< HEAD
   ProfileDetail,
   UserDetail,
-=======
   PostDetails
->>>>>>> development
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
