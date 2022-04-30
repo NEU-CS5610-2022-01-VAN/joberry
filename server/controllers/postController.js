@@ -2,7 +2,13 @@ import prisma from "../models/index.js";
 import asyncHandler from "express-async-handler";
 
 const getAllPosts = asyncHandler(async (req, res) => {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    include: {
+      _count: {
+        select: { comments: true, berries: true },
+      },
+    },
+  });
   res.send(posts);
 });
 
