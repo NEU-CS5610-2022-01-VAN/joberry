@@ -3,10 +3,9 @@ import { Button } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
-export default function Landing() {
+export default function SignIn() {
     const navigate = useNavigate();
     const { isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
-    const signUp = () => loginWithRedirect({ screen_hint: "signup" });
     return (
       <div className="landing-page">
         <div style={{ width: "20vw", textAlign: "center" }}>
@@ -23,9 +22,9 @@ export default function Landing() {
               }
               loading={isLoading}
             >
-              {!isAuthenticated ? "LOG IN" : "ENTER"}
+              {!isAuthenticated ? "SIGN IN or SIGN UP" : "ENTER"}
             </Button>
-            <p className="mg-t-8"> Your job hunting journey starts NOW ...</p>
+            <p className="mg-t-8"> SIGN IN or SIGN UP to UNLOCK this feature ...</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import { UserInfo } from "@/components";
-import { User } from "@auth0/auth0-react";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { EditOutlined } from "@ant-design/icons";
