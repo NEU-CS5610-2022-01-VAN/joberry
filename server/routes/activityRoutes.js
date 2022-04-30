@@ -1,25 +1,26 @@
 import express from "express";
-import { activityController } from '../controllers/index.js';
+import { berryController } from '../controllers/index.js';
+import { commentController } from '../controllers/index.js';
 import { requireAuth } from "../middleware/index.js";
 
 const activityRouter = express.Router();
 
 //berries
-activityRouter.get("berries", activityController.getBerriesOfPost);
-activityRouter.post("/berries", requireAuth, activityController.createNewBerry);
-activityRouter.delete("/berries", requireAuth, activityController.deleteBerry);
+activityRouter.get("berries", berryController.getBerriesOfPost);
+activityRouter.post("/berries", requireAuth, berryController.createNewBerry);
+activityRouter.delete("/berries", requireAuth, berryController.deleteBerry);
 
 //comments
-activityRouter.get("/comments", activityController.getCommentsOfPost);
+activityRouter.get("/comments", commentController.getCommentsOfPost);
 activityRouter.post(
   "/comments",
   requireAuth,
-  activityController.createNewComment
+  commentController.createNewComment
 );
 activityRouter.delete(
   "/comments/:id",
   requireAuth,
-  activityController.deleteComment
+  commentController.deleteComment
 );
 
 export default activityRouter;
