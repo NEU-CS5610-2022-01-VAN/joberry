@@ -1,12 +1,12 @@
 import { makeAutoObservable, flow } from "mobx";
 import { userAPI } from "@/api";
-
+import { $success, $error } from "@/components";
 const nullUser = {
   name: null,
   email: null,
   id: null,
   auth0Id: null,
-  picture:""
+  picture: "",
 };
 const nullProfile = {
   ...nullUser,
@@ -14,7 +14,7 @@ const nullProfile = {
   about: null,
   gender: null,
   occupation: null,
-  posts:null,
+  posts: null,
   berries: null,
   comments: null,
 };
@@ -24,14 +24,14 @@ class UserStore {
   loggedIn = false;
   currentUser = nullUser;
   userProfile = nullProfile;
-  otherUser = {};
+  otherUserDetail = {};
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  updateProfile(newProfile){
-    this.userProfile = newProfile;
+  updateProfileTerm(key, value) {
+    this.userProfile[key] = value;
   }
 
   logInUser() {
@@ -66,12 +66,12 @@ class UserStore {
     this.loading = false;
   });
 
-  getUserInfo = flow(function* (id) {
+  getUserDetail = flow(function* (id) {
     this.loading = true;
     try {
-      const data = yield userAPI.getProfile();
+      const data = yield userAPI.getUserDetail();
       if (data) {
-        this.otherUser = data;
+        this.otherUserDetail = data;
       }
     } catch (error) {}
     this.loading = false;
@@ -79,12 +79,21 @@ class UserStore {
 
   updateProfile = flow(function* () {
     this.loading = true;
+    const { gender, occupation, company, about } = this.userProfile;
     try {
-      const data = yield userAPI.updateProfile(this.userProfile);
+      const data = yield userAPI.updateProfile({
+        gender,
+        occupation,
+        company,
+        about,
+      });
       if (data) {
         this.userProfile = data;
+        $success("Profile updated!");
       }
-    } catch (error) {}
+    } catch (error) {
+      $error("Something happened, please try again later!");
+    }
     this.loading = false;
   });
 

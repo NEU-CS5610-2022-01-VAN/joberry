@@ -7,7 +7,7 @@ const userAPI = {
   getProfile() {
     return axios.get("/users/profile");
   },
-  getUserInfo(id) {
+  getUserDetail(id) {
     return axios.get(`/users/${id}`);
   },
   updateProfile(params) {
