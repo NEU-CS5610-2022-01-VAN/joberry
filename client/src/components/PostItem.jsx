@@ -8,11 +8,10 @@ const PostItem = (props) => {
     navigate(`/posts/${post.id}`);
   };
   return (
-    <div className="post-item" key={post.id}>
+    <div className="post-item cursor-pointer">
       <div className="mg-r-32">
         <div
           onClick={jumpToPost}
-          className="cursor-pointer"
           style={{ minHeight: "15vh" }}
         >
           <h4>{post.title}</h4>
@@ -21,11 +20,11 @@ const PostItem = (props) => {
         <div className="post-item-lower">
           <div className="mg-r-20">
             <Icon className="mg-r-8" type={"icon-berry-gray"} />
-            {post.berryCount || 0}
+            {post._count.berries || 0}
           </div>
           <div>
             <Icon className="mg-r-8" type={"icon-comment"} />
-            {post.commentCount || 0}
+            {post._count.comments || 0}
           </div>
         </div>
       </div>
