@@ -6,8 +6,7 @@ import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";
 
 const Home = observer(() => {
-  const { postStore } = useStoreAndAuth();
-  const { accessToken } = useStoreAndAuth();
+  const { postStore, accessToken } = useStoreAndAuth();
 
   useEffect(() => {
     if (accessToken) postStore.getAllPosts();
