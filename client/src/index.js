@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { StoreAndAuthProvider, configureInterceptors } from "@/utils";
+import {$error} from '@/components'
 import {
   SignIn,
   Home,
@@ -11,6 +12,9 @@ import {
   ProfileSettings,
   NotFound,
   NewPost,
+  ProfileDetail,
+  UserDetail,
+  PostDetails
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -31,6 +35,7 @@ const requestedScopes = [
 function RequireAuth({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
   if (!isLoading && !isAuthenticated) {
+    $error("Sign in Required!")
     return <Navigate to="/sign-in" replace />;
   }
   return children;
@@ -55,12 +60,17 @@ root.render(
               <Route index path="home" element={<Home />} />
               <Route path="discover" element={"discover"} />
               <Route path="tags" element={"tags"} />
-              <Route path="posts/:id" element={"posts"} />
+              <Route path="users/:id" element={<UserDetail />} />
+              <Route path="posts/:id" element={<PostDetails />} />
               <Route path="404" element={<NotFound />} />
               {/* Auth routes down here! */}
               <Route
                 path="profile"
-                element={<RequireAuth>"profile"</RequireAuth>}
+                element={
+                  <RequireAuth>
+                    <ProfileDetail />
+                  </RequireAuth>
+                }
               />
               <Route
                 path="posts/new"

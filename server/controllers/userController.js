@@ -6,6 +6,8 @@ const verifyUser = asyncHandler(async (req, res) => {
   const auth0Id = req.user.sub;
   const email = req.user[`${process.env.AUTH0_AUDIENCE}/email`];
   const name = req.user[`${process.env.AUTH0_AUDIENCE}/name`];
+  const picture = req.user[`${process.env.AUTH0_AUDIENCE}/picture`];
+
   const user = await prisma.user.findUnique({
     where: {
       auth0Id,
@@ -15,6 +17,7 @@ const verifyUser = asyncHandler(async (req, res) => {
       email: true,
       auth0Id: true,
       id: true,
+      picture: true,
     },
   });
 
@@ -26,6 +29,7 @@ const verifyUser = asyncHandler(async (req, res) => {
         email,
         auth0Id,
         name,
+        picture,
       },
     });
     res.send(newUser);
@@ -74,8 +78,8 @@ const deleteAccount = asyncHandler(async (req, res) => {
 });
 
 // get user information
-const getUserInfo = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+const getUserDetail = asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id);
   const user = await prisma.user.findUnique({
     where: {
       id,
@@ -89,5 +93,5 @@ export default {
   getProfile,
   updateProfile,
   deleteAccount,
-  getUserInfo,
+  getUserDetail,
 };

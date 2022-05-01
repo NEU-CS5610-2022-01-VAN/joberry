@@ -3,11 +3,11 @@ import asyncHandler from "express-async-handler";
 
 const createNewFollowing = asyncHandler(async (req, res) => {
     const auth0Id = req.user.sub;
-    const { followingId } = req.body;
-    const newFollowing = await prisma.follows.create({
+    const { following } = req.body;
+    const newFollowing = await prisma.user.update({
         data: {
-            followingId,
-            follower: {connect: { auth0Id }},
+            following,
+            followers: {connect: { auth0Id }},
         },
     });
     res.send(newFollowing);
@@ -15,11 +15,11 @@ const createNewFollowing = asyncHandler(async (req, res) => {
 
 const deleteFollowing = asyncHandler(async (req, res) => {
     const auth0Id = req.user.sub;
-    const {followingId} = req.body;
+    const { following } = req.body;
     const deletedFollowing = await prisma.folllows.delete({
         where: {
-            follower: {connect: { auth0Id }},
-            followingId,
+            followers: {connect: { auth0Id }},
+            following,
         },
     });
     res.send(deletedFollowing);
