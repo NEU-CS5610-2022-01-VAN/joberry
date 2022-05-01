@@ -5,7 +5,7 @@ import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";
 
 const PostItem = observer((props) => {
-  const { userStore, berryStore, accessToken, postStore } = useStoreAndAuth();
+  const { userStore, berryStore, accessToken } = useStoreAndAuth();
   const { currentUser } = userStore;
   const { post } = props;
   const navigate = useNavigate();
@@ -17,28 +17,29 @@ const PostItem = observer((props) => {
 
   const handleBerryClick = () => {
     if (!accessToken) {
-      $error("Login required!");
+     return $error("Login required to give a berry~");
     }
     if (hasBerry) {
       berryStore
         .deleteBerry(berry.id)
-        .then(() => postStore.getAllPosts());
+        .then(() => props.berryCallback());
     } else {
       berryStore
         .createNewBerry({ postId: post.id })
-        .then(() => postStore.getAllPosts());
+        .then(() => props.berryCallback());
     }
   };
 
   return (
     <div className="post-item" key={post.id}>
-      <div className="mg-r-32 show-ellipsis mg-t-16">
-        <div style={{ minHeight: "15vh" }}>
+      <div className="mg-r-32 mg-t-16">
+        <div style={{ minHeight: "20vh" }}>
           <h4 className="cursor-pointer" onClick={jumpToPost}>
             {post.title}
           </h4>
           <div
-            className="cursor-pointer"
+            className="cursor-pointer show-ellipsis" 
+            style={{height:"10vh", width:"60vw"}}
             onClick={jumpToPost}
             dangerouslySetInnerHTML={{ __html: post.body }}
           ></div>

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { PostItem } from "@/components";
-import { Searchbar } from "@/components";
+import { PostItem, Searchbar, Loading } from "@/components";
 import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";
 import { useParams } from "react-router-dom";
@@ -15,6 +14,9 @@ const SearchResult = observer(() => {
     return () => {};
   }, [search]);
   const { postList } = postStore;
+
+  const berryCallback = () => postStore.searchPost(search);
+
   return (
     <>
       <div className="mg-t-12">
@@ -40,9 +42,17 @@ const SearchResult = observer(() => {
       </div>
       {postList.length > 0 && (
         <div className="white-container mg-t-12">
-          {postList.map((item) => (
-            <PostItem post={item} key={item.id} />
-          ))}
+          {postStore.loading ? (
+            <Loading />
+          ) : (
+            postList.map((item) => (
+              <PostItem
+                post={item}
+                key={item.id}
+                berryCallback={berryCallback}
+              />
+            ))
+          )}
         </div>
       )}
       {postList.length === 0 && (

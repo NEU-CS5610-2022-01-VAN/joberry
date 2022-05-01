@@ -10,5 +10,5 @@ export { default as Editor } from "./Editor";
 export { $success, $error, $info, $warning } from "./Messages";
 export { default as ProfileHeader } from "./ProfileHeader";
 export { default as Profile } from "./Profile";
-export {default as NewPostModal} from './NewPostModal'
+export { default as NewPostModal } from "./NewPostModal";
 export { default as Searchbar } from "./Searchbar";

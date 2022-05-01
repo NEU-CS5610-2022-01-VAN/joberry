@@ -11,15 +11,15 @@ const NewPostModal = observer((props) => {
 
   const onCancel = () => {
     form.resetFields();
-    cancelPop()
+    cancelPop();
   };
   const onFinish = () => {
-    form.validateFields().then(res=>{
-      postStore.createNewPost({...res, tagIds:[]}).then(()=> {
+    form.validateFields().then((res) => {
+      postStore.createEditPost({ ...res, tagIds: [] }).then(() => {
         onCancel();
       });
-    })
-  }
+    });
+  };
 
   return (
     <Modal
@@ -29,11 +29,7 @@ const NewPostModal = observer((props) => {
       destroyOnClose
       onCancel={onCancel}
     >
-      <Form
-        name="nest-messages"
-        onFinish={onFinish}
-        form={form}
-      >
+      <Form name="nest-messages" onFinish={onFinish} form={form}>
         <Form.Item
           name="title"
           rules={[
@@ -60,9 +56,7 @@ const NewPostModal = observer((props) => {
             autoSize={{ minRows: 3.5, maxRows: 3.5 }}
           />
         </Form.Item>
-        <Form.Item>
-
-        </Form.Item>
+        <Form.Item></Form.Item>
         <Form.Item>
           <Button
             className="mg-r-16"

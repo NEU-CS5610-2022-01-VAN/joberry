@@ -14,16 +14,26 @@ const emptyPost = {
     name: null,
   },
   comments: [],
-  berries:[]
+  berries: [],
 };
 
 class PostStore {
   loading = false;
   postList = [];
   postDetail = emptyPost;
+  title = "";
+  body = "";
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  updateBody(body) {
+    this.body = body;
+  }
+
+  updateTitle(title) {
+    this.title = title;
   }
 
   getAllPosts = flow(function* () {
@@ -41,6 +51,8 @@ class PostStore {
       const data = yield postAPI.getPostDetail(id);
       if (data) {
         this.postDetail = data;
+        this.title = this.postDetail.title;
+        this.body = this.postDetail.body;
         commentStore.commentList = data.comments;
         commentStore.postId = id;
       }
@@ -63,7 +75,7 @@ class PostStore {
       const data = yield postAPI.createNewPost(params);
       if (data) {
         this.postDetail = data;
-         $success('New post created!');
+        $success("New post created!");
       }
     } catch (error) {}
     this.loading = false;

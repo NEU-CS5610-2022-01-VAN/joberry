@@ -13,10 +13,10 @@ const UserDetail = observer(() => {
     userStore.getUserDetail(id);
     return () => {};
   }, []);
-
+  const berryCallback = () => userStore.getUserDetail(id);
   return (
     <div>
-      <Profile user={otherUserDetail} activity={otherUserDetail.activities} />
+      <Profile loading={userStore.loading} user={otherUserDetail} activity={otherUserDetail.activities} berryCallback={berryCallback} />
     </div>
   );
 });

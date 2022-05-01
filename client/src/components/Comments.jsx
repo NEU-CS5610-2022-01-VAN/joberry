@@ -71,7 +71,7 @@ const Comments = observer(() => {
       {commentDisplay.length > 0 && <CommentList comments={commentDisplay} />}
       {accessToken && (
         <Comment
-          avatar={<Avatar user={userStore.curerntUser} />}
+          avatar={<Avatar user={userStore.curerntUser} goToProfile />}
           content={
             <Editor
               onChange={(e) => setValue(e.target.value)}

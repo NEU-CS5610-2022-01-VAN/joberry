@@ -1,6 +1,6 @@
 import { makeAutoObservable, flow } from "mobx";
 import { berryAPI } from "@/api";
-import { $success } from "@/components";
+import { $success, $info } from "@/components";
 
 class BerryStore {
   loading = false;
@@ -14,7 +14,7 @@ class BerryStore {
     try {
       const data = yield berryAPI.createNewBerry(params);
       if (data) {
-        $success("Success");
+        $success("Successfully added your berry!");
       }
     } catch (error) {}
     this.loading = false;
@@ -25,7 +25,7 @@ class BerryStore {
     try {
       const data = yield berryAPI.deleteBerry(params);
       if (data) {
-        $success("Success");
+        $info("Your berry is now gone :(");
       }
     } catch (error) {}
     this.loading = false;

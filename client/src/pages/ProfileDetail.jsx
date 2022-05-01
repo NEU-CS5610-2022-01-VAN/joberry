@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const ProfilieDetail = observer(() => {
   const {userStore, accessToken} = useStoreAndAuth();
-  const {userProfile} = userStore;
   const navigate = useNavigate();
 
   useEffect(() => {
     if (accessToken) userStore.getProfile();
     return () => {};
   }, [accessToken]);
+
+  const berryCallback = () => userStore.getProfile();
 
   return (
     <div style={{ position: "relative" }}>
@@ -36,7 +37,13 @@ const ProfilieDetail = observer(() => {
         </Button>
       </div>
       <div>
-        <Profile user={userProfile} activity={userProfile.activities} goToProfile />
+        <Profile
+          loading={userStore.loading}
+          user={userStore.userProfile}
+          activity={userStore.userProfile.activities}
+          goToProfile
+          berryCallback={berryCallback}
+        />
       </div>
     </div>
   );
