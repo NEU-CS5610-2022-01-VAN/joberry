@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Input } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useStoreAndAuth } from "@/utils";
-import { Avatar, Icon } from "@/components";
+import { Avatar, Icon, Searchbar } from "@/components";
 
 export default function HeaderBar() {
   const navigate = useNavigate();
@@ -30,11 +30,9 @@ export default function HeaderBar() {
             <Link className="mg-r-32" to="/tags">
               TAGS
             </Link>
-            <Input
-              placeholder="Search for posts"
+            <Searchbar
               style={{ width: "20vw" }}
               className="mg-r-12 search-bar"
-              suffix={<Icon type="icon-search" />}
               size="large"
             />
           </div>

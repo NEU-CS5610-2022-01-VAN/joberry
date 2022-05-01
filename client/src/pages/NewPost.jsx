@@ -1,26 +1,25 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { Editor, $error } from "@/components";
-import { Input, Button, Tag } from "antd";
+import { Input, Button } from "antd";
 import { useStoreAndAuth } from "@/utils";
 import { useNavigate } from "react-router-dom";
-const { CheckableTag } = Tag;
 
 
 const NewPost = observer(() => {
   let [title, setTitle] = useState("");
-  let [selectedTags, setSelectedTags] = useState([]);
+  // let [selectedTags, setSelectedTags] = useState([]);
   const [body, setBody] = useState("");
   const [inputError, setInputError] = useState(false);
   const { postStore } = useStoreAndAuth();
   const navigate = useNavigate();
 
-  const handleTagChange = (tag, checked) => {
-    const nextSelectedTags = checked
-      ? [...selectedTags, tag]
-      : selectedTags.filter((t) => t.id !== tag.id);
-    setSelectedTags(nextSelectedTags);
-  };
+  // const handleTagChange = (tag, checked) => {
+  //   const nextSelectedTags = checked
+  //     ? [...selectedTags, tag]
+  //     : selectedTags.filter((t) => t.id !== tag.id);
+  //   setSelectedTags(nextSelectedTags);
+  // };
 
   const createNewPost = () => {
     if (!title) return setInputError(true);

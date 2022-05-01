@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Input, Button, Form } from "antd";
+import { Input, Button } from "antd";
 import { Avatar, PostItem, NewPostModal } from "@/components";
 import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";

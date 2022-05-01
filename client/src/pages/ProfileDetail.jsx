@@ -5,19 +5,6 @@ import { Profile } from "@/components";
 import { useStoreAndAuth } from "@/utils";
 import { useNavigate } from "react-router-dom";
 
-const user = {
-  id: 1,
-  name: "wcr",
-  email: "wcrzrz@gmail.com",
-  about: "Student @ Northeastern University\n I am an idiot as you might know.\n I wish I could be a Lannister."
-};
-const post = {
-  id: 1,
-  body: "awiefuyaw",
-  title: "awefcaw",
-};
-const activity = [{ id: 1, user, post, type: 1 }];
-
 const ProfilieDetail = observer(() => {
   const {userStore, accessToken} = useStoreAndAuth();
   const {userProfile} = userStore;
