@@ -14,7 +14,8 @@ import {
   NewPost,
   ProfileDetail,
   UserDetail,
-  PostDetails
+  PostDetails,
+  SearchResult
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -63,6 +64,7 @@ root.render(
               <Route path="users/:id" element={<UserDetail />} />
               <Route path="posts/:id" element={<PostDetails />} />
               <Route path="404" element={<NotFound />} />
+              <Route path="search/:search" element={<SearchResult />} />
               {/* Auth routes down here! */}
               <Route
                 path="profile"
