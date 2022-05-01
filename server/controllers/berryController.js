@@ -22,6 +22,13 @@ const createNewBerry = asyncHandler(async (req, res) => {
     });
     res.send(newBerry);
   }
+  res.send(newBerry);
+  await prisma.activity.create({
+    data: {
+      postId,
+      userId: {connect: {auth0Id}},
+    },
+  });
 });
 
 // gets all berries of a post
@@ -47,6 +54,7 @@ const deleteBerry = asyncHandler(async (req, res) => {
     },
   });
   res.send(deletedBerry);
+ 
 });
 
 export default {
