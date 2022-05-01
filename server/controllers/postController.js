@@ -7,6 +7,12 @@ const getAllPosts = asyncHandler(async (req, res) => {
       _count: {
         select: { comments: true, berries: true },
       },
+      berries: {
+        select: {
+          user: true,
+          id:true,
+        },
+      },
     },
   });
   res.send(posts);
@@ -39,13 +45,19 @@ const getPostDetail = asyncHandler(async (req, res) => {
     include: {
       comments: {
         include: {
-          user: true
-        }
+          user: true,
+        },
+      },
+      berries: {
+        select: {
+          user: true,
+          id:true,
+        },
       },
       tags: true,
-        _count: {
-          select: { comments: true, berries: true },
-        },
+      _count: {
+        select: { comments: true, berries: true },
+      },
       author: true,
     },
   });

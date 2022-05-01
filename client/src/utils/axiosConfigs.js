@@ -3,9 +3,9 @@ import axios from "axios";
 const configureInterceptors = () => {
   axios.defaults.timeout = 100000;
   axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-
+  axios.mode = "cors"
   axios.defaults.headers.common["Content-Type"] =
-    "application/json;charset=UTF-8";
+    "application/json";
 
   // response 拦截器
   axios.interceptors.response.use(

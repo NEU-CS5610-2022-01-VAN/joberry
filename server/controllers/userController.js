@@ -6,7 +6,6 @@ const verifyUser = asyncHandler(async (req, res) => {
   const auth0Id = req.user.sub;
   const email = req.user[`${process.env.AUTH0_AUDIENCE}/email`];
   const name = req.user[`${process.env.AUTH0_AUDIENCE}/name`];
-  const picture = req.user[`${process.env.AUTH0_AUDIENCE}/picture`];
 
   const user = await prisma.user.findUnique({
     where: {

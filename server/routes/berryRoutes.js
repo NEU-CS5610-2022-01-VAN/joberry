@@ -5,6 +5,6 @@ import { requireAuth } from "../middleware/index.js";
 const router = express.Router();
 router.get("/", berryController.getBerriesOfPost);
 router.post("/", requireAuth, berryController.createNewBerry);
-router.delete("/", requireAuth, berryController.deleteBerry);
+router.delete("/:id", requireAuth, berryController.deleteBerry);
 
 export default router
