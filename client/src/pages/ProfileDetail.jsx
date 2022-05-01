@@ -49,7 +49,7 @@ const ProfilieDetail = observer(() => {
         </Button>
       </div>
       <div>
-        <Profile user={userProfile} activity={activity} goToProfile />
+        <Profile user={userProfile} activity={userProfile.activities} goToProfile />
       </div>
     </div>
   );

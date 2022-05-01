@@ -6,27 +6,19 @@ import asyncHandler from "express-async-handler";
 const createNewBerry = asyncHandler(async (req, res) => {
   const auth0Id = req.user.sub;
   const { postId } = req.body;
-  const berry = await prisma.berry.findUnique({
-    where: {
-      post: { connect: { id: postId } },
+
+  const newBerry = await prisma.berry.create({
+    data: {
+      post: { connect: { id: parseInt(postId) } },
       user: { connect: { auth0Id } },
     },
   });
-  if (berry) res.send(berry);
-  else {
-    const newBerry = await prisma.berry.create({
-      data: {
-        post: { connect: { id: postId } },
-        user: { connect: { auth0Id } },
-      },
-    });
-    res.send(newBerry);
-  }
   res.send(newBerry);
+
   await prisma.activity.create({
     data: {
-      postId,
-      userId: {connect: {auth0Id}},
+      post: { connect: { id: parseInt(postId) } },
+      user: { connect: { auth0Id } },
     },
   });
 });
@@ -54,7 +46,6 @@ const deleteBerry = asyncHandler(async (req, res) => {
     },
   });
   res.send(deletedBerry);
- 
 });
 
 export default {

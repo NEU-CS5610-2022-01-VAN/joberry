@@ -4,7 +4,6 @@ import { Comments, AvatarActivity, Icon } from "@/components";
 import { useStoreAndAuth } from "@/utils";
 import { observer } from "mobx-react";
 import { useParams } from "react-router-dom";
-import moment from "moment";
 
 const PostDetails = observer(() => {
   const { id } = useParams();
@@ -21,7 +20,7 @@ const PostDetails = observer(() => {
 
   const activity = {
     user: postDetail.author,
-    time: moment(postDetail.createdAt).format("MM/DD/YYYY"),
+    time: postDetail.createdAt,
     action: "posted",
   };
 

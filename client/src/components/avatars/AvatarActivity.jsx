@@ -1,9 +1,9 @@
 import React from "react";
 import { Avatar } from "@/components";
-
+import moment from 'moment'
 const AvatarActivity = ({ activity, reverse }) => {
-  const { user, action, time } = activity;
-
+  let { user, action, time } = activity;
+  time = moment(time).format("MM/DD/YYYY hh:ss")
   return (
     <div className="avatar-activity">
       <Avatar className="mg-r-12" user={user} size="small" showName />
