@@ -20,6 +20,7 @@ const nullProfile = {
 
 class UserStore {
   loading = false;
+  loggedIn = false;
   currentUser = nullUser;
   userProfile = nullProfile;
   otherUser = {};
@@ -28,8 +29,18 @@ class UserStore {
     makeAutoObservable(this);
   }
 
-  updateProfile = (newProfile) => {
+  updateProfile(newProfile){
     this.userProfile = newProfile;
+  }
+
+  logInUser(user) {
+    this.currentUser = user;
+    this.loggedIn = true;
+  }
+
+  logOut() {
+    this.loggedIn = false;
+    this.currentUser = nullUser;
   }
 
   verifyUser = flow(function* () {
@@ -38,6 +49,7 @@ class UserStore {
       const data = yield userAPI.verifyUser();
       if (data) {
         this.currentUser = data;
+        this.loggedIn = true;
       }
     } catch (error) {}
     this.loading = false;

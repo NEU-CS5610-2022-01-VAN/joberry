@@ -9,7 +9,7 @@ const BasicAvatar = observer((props) => {
   const navigate = useNavigate();
   const { userStore } = useStoreAndAuth();
   const gotoUser = () => {
-    if (user.id == userStore.currentUser.id) {
+    if (user.id === userStore.currentUser.id) {
       navigate("/profile");
     } else {
       navigate(`/users/${user.id}`);

@@ -5,3 +5,10 @@ export { default as UserInfo } from "./UserInfo";
 export { AvatarActivity, Avatar } from "./avatars";
 export { default as PostItem } from "./PostItem";
 export { default as ActivityRecord } from "./ActivityRecord";
+export { default as Editor } from "./Editor";
+export {
+  $success,
+  $error,
+  $info,
+  $warning,
+} from "./Messages";
