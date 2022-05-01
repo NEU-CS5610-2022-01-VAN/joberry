@@ -3,6 +3,7 @@ import { Button } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
+
 export default function SignIn() {
     const navigate = useNavigate();
     const { isAuthenticated, loginWithRedirect, isLoading } = useAuth0();

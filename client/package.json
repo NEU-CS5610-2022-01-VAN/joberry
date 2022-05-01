@@ -15,7 +15,7 @@
     "axios": "^0.27.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
-    "babel-jest": "23.6.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "8.0.5",
     "babel-plugin-import": "^1.13.5",
     "babel-plugin-named-asset-import": "^0.3.1",
@@ -36,7 +36,7 @@
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
-    "jest": "23.6.0",
+    "jest": "^23.6.0",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
@@ -63,6 +63,7 @@
     "suneditor": "^2.43.1",
     "suneditor-react": "^3.4.0",
     "terser-webpack-plugin": "1.2.2",
+    "ts-jest": "^27.1.4",
     "url-loader": "1.1.2",
     "web-vitals": "^2.1.4",
     "webpack": "4.28.3",
@@ -107,7 +108,7 @@
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.(js|jsx)$": "babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
@@ -117,7 +118,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "^@/(.*)": "<rootDir>/src/$1"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -132,16 +134,24 @@
       "node"
     ],
     "watchPlugins": [
-      "/Users/Xinyi/Desktop/0_CS5610/assignments/assignment-03-group-2/client/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/Xinyi/Desktop/0_CS5610/assignments/assignment-03-group-2/client/node_modules/jest-watch-typeahead/testname.js"
+      "<rootDir>/node_modules/jest-watch-typeahead/filename.js",
+      "<rootDir>/node_modules/jest-watch-typeahead/testname.js"
     ]
   },
   "babel": {
     "presets": [
-      "react-app"
+      "@babel/preset-env"
     ],
     "plugins": [
+      "@babel/plugin-transform-react-jsx",
+      "react-app",
       "@babel/plugin-proposal-optional-chaining"
     ]
+  },
+
+  
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.17.10"
   }
 }
