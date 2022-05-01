@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { Avatar, Input, Button } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { PostItem } from "@/components";
+import { Input, Button } from "antd";
+import { Avatar, PostItem } from "@/components";
 import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";
 
@@ -20,8 +19,9 @@ const Home = observer(() => {
           <div className="display-flex">
             <Avatar
               className="cursor-pointer mg-r-16"
-              icon={<UserOutlined />}
               size="large"
+              user={userStore.currentUser}
+              style={{marginTop:"-9vh"}}
             />
             <div style={{ width: "98%" }}>
               <Input.TextArea
