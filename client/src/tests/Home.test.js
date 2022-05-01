@@ -32,6 +32,8 @@ jest.mock("react-router-dom", () => ({
   },
 }));
 
+jest.mock("blockquote")
+
 // 
 test("renders Home", () => {
   render(

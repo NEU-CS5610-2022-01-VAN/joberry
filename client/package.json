@@ -19,6 +19,7 @@
     "babel-loader": "8.0.5",
     "babel-plugin-import": "^1.13.5",
     "babel-plugin-named-asset-import": "^0.3.1",
+    "babel-plugin-react-app": "^0.0.0",
     "babel-preset-react-app": "^7.0.2",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
@@ -140,16 +141,15 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      "@babel/preset-env", "react-app"
     ],
     "plugins": [
       "@babel/plugin-transform-react-jsx",
       "react-app",
-      "@babel/plugin-proposal-optional-chaining"
+      "@babel/plugin-proposal-optional-chaining",
+      ["@babel/plugin-proposal-private-methods", { "loose": true }]
     ]
   },
-
-  
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/preset-env": "^7.17.10"
