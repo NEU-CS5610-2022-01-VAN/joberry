@@ -14,6 +14,12 @@ const createNewComment = asyncHandler(async (req, res) => {
     },
   });
   res.send(newComment);
+  await prisma.activity.create({
+    data: {
+      postId,
+      user: { connect: { auth0Id} },
+    },
+  });
 });
 
 // gets all comments of a post
@@ -33,12 +39,18 @@ const getCommentsOfPost = asyncHandler(async (req, res) => {
 //delete a comment
 const deleteComment = asyncHandler(async (req, res) => {
   const id = parseInt(req.params.id);
+  const { postId } = req.body;
   const deletedComments = await prisma.comment.deleteMany({
     where: {
       id,
     },
   });
   res.send(deletedComments);
+  await prisma.activity.delete({
+    where: {
+      postId,
+    },
+  });
 });
 
 export default {
