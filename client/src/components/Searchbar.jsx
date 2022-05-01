@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 const Searchbar = observer((props) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
-  const makeSearch = () => navigate(`/search/${keyword}`);
+  const makeSearch = () => keyword && navigate(`/search/${keyword}`);
+
   return (
     <>
       <Input
+        {...props}
         placeholder="Search for posts"
         className="mg-r-12"
         suffix={
@@ -22,7 +24,6 @@ const Searchbar = observer((props) => {
         }
         onChange={(e) => setKeyword(e.target.value)}
         onPressEnter={makeSearch}
-        {...props}
       />
     </>
   );
