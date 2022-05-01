@@ -46,10 +46,8 @@ class UserStore {
     this.loading = true;
     try {
       const data = yield userAPI.verifyUser();
-      if (data) {
-        this.currentUser = data;
-        this.loggedIn = true;
-      }
+      if (data) this.logInUser(data);
+      console.log(data)
     } catch (error) {}
     this.loading = false;
   });
@@ -68,7 +66,7 @@ class UserStore {
   getUserDetail = flow(function* (id) {
     this.loading = true;
     try {
-      const data = yield userAPI.getUserDetail();
+      const data = yield userAPI.getUserDetail(id);
       if (data) {
         this.otherUserDetail = data;
       }

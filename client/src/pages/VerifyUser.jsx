@@ -16,7 +16,7 @@ const VerifyUser = observer(() => {
 
   useEffect(() => {
     autorun(() => {
-      if (userStore.userProfile.auth0Id) navigate("/home");
+      if (userStore.currentUser.auth0Id) navigate("/home");
     });
   }, []);
 

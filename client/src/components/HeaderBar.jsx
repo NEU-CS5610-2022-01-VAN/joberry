@@ -7,11 +7,7 @@ import { Avatar, Icon } from "@/components";
 
 export default function HeaderBar() {
   const navigate = useNavigate();
-  const { userStore, accessToken, user } = useStoreAndAuth();
-  useEffect(() => {
-    if (accessToken) userStore.logInUser(user);
-    return () => {};
-  }, []);
+  const { userStore } = useStoreAndAuth();
 
   return (
     <div className="header-bar">
@@ -34,8 +30,6 @@ export default function HeaderBar() {
             <Link className="mg-r-32" to="/tags">
               TAGS
             </Link>
-          </div>
-          <div>
             <Input
               placeholder="Search for posts"
               style={{ width: "20vw" }}
@@ -43,18 +37,20 @@ export default function HeaderBar() {
               suffix={<Icon type="icon-search" />}
               size="large"
             />
-            <Button
-              type="primary"
-              shape="round"
-              size="large"
-              onClick={() => navigate("/posts/new")}
-            >
-              New Post
-            </Button>
           </div>
         </div>
       </div>
       <div className="align-center">
+        <Button
+          className="mg-r-20"
+          type="primary"
+          shape="round"
+          size="large"
+          style={{ float: "right" }}
+          onClick={() => navigate("/posts/new")}
+        >
+          New Post
+        </Button>
         <h5 className="mg-r-12 mg-t-8 cursor-default">
           {userStore.currentUser.name || "Guest User"}
         </h5>

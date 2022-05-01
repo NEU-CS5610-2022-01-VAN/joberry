@@ -6,6 +6,7 @@ const verifyUser = asyncHandler(async (req, res) => {
   const auth0Id = req.user.sub;
   const email = req.user[`${process.env.AUTH0_AUDIENCE}/email`];
   const name = req.user[`${process.env.AUTH0_AUDIENCE}/name`];
+  const picture = req.user[`${process.env.AUTH0_AUDIENCE}/picture`];
 
   const user = await prisma.user.findUnique({
     where: {
@@ -43,9 +44,27 @@ const getProfile = asyncHandler(async (req, res) => {
       auth0Id,
     },
     include: {
-      posts: true,
-      berries: true,
-      comments: true,
+      activities: {
+        include: {
+          post: {
+            include: {
+              _count: {
+                select: { comments: true, berries: true },
+              },
+              berries: {
+                select: {
+                  user: true,
+                  id: true,
+                },
+              },
+            },
+          },
+          user: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
   res.send(user);
@@ -82,6 +101,29 @@ const getUserDetail = asyncHandler(async (req, res) => {
   const user = await prisma.user.findUnique({
     where: {
       id,
+    },
+    include: {
+      activities: {
+        include: {
+          post: {
+            include: {
+              _count: {
+                select: { comments: true, berries: true },
+              },
+              berries: {
+                select: {
+                  user: true,
+                  id: true,
+                },
+              },
+            },
+          },
+          user: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
   res.send(user);

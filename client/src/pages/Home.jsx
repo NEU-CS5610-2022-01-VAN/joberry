@@ -44,9 +44,11 @@ const Home = observer(() => {
         ""
       )}
       <div className="white-container mg-t-12">
-        {postStore.postList.map((item) => (
-          <PostItem post={item} key={item.id} />
-        ))}
+        <div style={{marginTop:"-1.5vh"}}>
+          {postStore.postList.map((item) => (
+            <PostItem post={item} key={item.id} />
+          ))}
+        </div>
       </div>
     </>
   );

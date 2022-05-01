@@ -26,9 +26,7 @@ model User {
     comments   Comment[]
     followers  User[]     @relation("UserFollows", references: [id])
     followings User[]     @relation("UserFollows", references: [id])
-    activity   Activity[]
-    // Follows    Follows[]
-    // Follows    Follows[]
+    activities Activity[]
 }
 
 model Post {
@@ -79,12 +77,13 @@ model Tag {
 }
 
 model Activity {
-    id     Int  @id @default(autoincrement())
-    user   User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-    userId Int
-    post   Post @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-    postId Int
-    type   Int
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    user      User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    userId    Int
+    post      Post     @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    postId    Int
+    type      Int
 }
 
 //1 -> create post

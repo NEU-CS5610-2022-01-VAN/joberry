@@ -10,7 +10,7 @@ const PostItem = observer((props) => {
   const { post } = props;
   const navigate = useNavigate();
   const { berries } = post;
-  const berry = berries && berries.find((item) => item.user.email === currentUser.email);
+  const berry = berries && berries.find((item) => (item.user.email === currentUser.email));
   const hasBerry = berries && berries.length > 0 && berry;
 
   const jumpToPost = () => navigate(`/posts/${post.id}`);
@@ -32,7 +32,7 @@ const PostItem = observer((props) => {
 
   return (
     <div className="post-item" key={post.id}>
-      <div className="mg-r-32 show-ellipsis">
+      <div className="mg-r-32 show-ellipsis mg-t-16">
         <div style={{ minHeight: "15vh" }}>
           <h4 className="cursor-pointer" onClick={jumpToPost}>
             {post.title}
@@ -47,7 +47,7 @@ const PostItem = observer((props) => {
           <div className="mg-r-20 cursor-pointer" onClick={handleBerryClick}>
             <Icon
               className="mg-r-8 "
-              type={hasBerry ? "icon-berry" : "icon-berry-gray"}
+              type={hasBerry ? "icon-berry-pink" : "icon-berry-gray"}
             />
             {post._count?.berries || 0}
           </div>

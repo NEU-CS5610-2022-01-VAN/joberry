@@ -10,9 +10,12 @@ const getAllPosts = asyncHandler(async (req, res) => {
       berries: {
         select: {
           user: true,
-          id:true,
+          id: true,
         },
       },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
   res.send(posts);
@@ -20,7 +23,7 @@ const getAllPosts = asyncHandler(async (req, res) => {
 
 const createNewPost = asyncHandler(async (req, res) => {
   const auth0Id = req.user.sub;
-  const { title, body, tagIds, postId } = req.body;
+  const { title, body, tagIds } = req.body;
   const newPost = await prisma.post.create({
     data: {
       title,
@@ -36,8 +39,13 @@ const createNewPost = asyncHandler(async (req, res) => {
   res.send(newPost);
   await prisma.activity.create({
     data: {
-      postId,
-      userId: { connect: { auth0Id } },
+      type: 1,
+      post: {
+        connect: {
+          id: newPost.id,
+        },
+      },
+      user: { connect: { auth0Id } },
     },
   });
 });
@@ -57,7 +65,7 @@ const getPostDetail = asyncHandler(async (req, res) => {
       berries: {
         select: {
           user: true,
-          id:true,
+          id: true,
         },
       },
       tags: true,
@@ -96,11 +104,6 @@ const deletePost = asyncHandler(async (req, res) => {
     },
   });
   res.send(deletedPost);
-  await prisma.activity.delete({
-    where: {
-      id,
-    },
-  });
 });
 
 // searches posts by title or content
