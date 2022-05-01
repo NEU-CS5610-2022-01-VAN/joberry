@@ -30,13 +30,26 @@ const ProfilieDetail = observer(() => {
 
   return (
     <div style={{ position: "relative" }}>
-      <div>
-        <Profile user={userProfile} activity={activity} goToProfile />
-      </div>
-      <div style={{float:"right", position:"absolute", top:"11vh", right:"1vw"}}>
-        <Button type="primary" ghost size="large" shape="round" onClick={()=>navigate("/profile/settings")}>
+      <div
+        style={{
+          float: "right",
+          position: "absolute",
+          top: "11vh",
+          right: "1vw",
+        }}
+      >
+        <Button
+          type="primary"
+          ghost
+          size="large"
+          shape="round"
+          onClick={() => navigate("/profile/settings")}
+        >
           Settings
         </Button>
+      </div>
+      <div>
+        <Profile user={userProfile} activity={activity} goToProfile />
       </div>
     </div>
   );

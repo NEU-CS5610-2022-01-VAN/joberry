@@ -6,13 +6,22 @@ import asyncHandler from "express-async-handler";
 const createNewBerry = asyncHandler(async (req, res) => {
   const auth0Id = req.user.sub;
   const { postId } = req.body;
-  const newBerry = await prisma.berry.create({
-    data: {
+  const berry = await prisma.berry.findUnique({
+    where: {
       post: { connect: { id: postId } },
       user: { connect: { auth0Id } },
     },
   });
-  res.send(newBerry);
+  if (berry) res.send(berry);
+  else {
+    const newBerry = await prisma.berry.create({
+      data: {
+        post: { connect: { id: postId } },
+        user: { connect: { auth0Id } },
+      },
+    });
+    res.send(newBerry);
+  }
 });
 
 // gets all berries of a post
@@ -31,7 +40,7 @@ const getBerriesOfPost = asyncHandler(async (req, res) => {
 
 // delete a berry
 const deleteBerry = asyncHandler(async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const deletedBerry = await prisma.berry.delete({
     where: {
       id: parseInt(id),

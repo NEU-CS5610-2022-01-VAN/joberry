@@ -12,7 +12,6 @@ const tabs = [
 ];
 
 const Profile = (props) => {
-
   const { user, activity, goToProfile } = props;
   const [key, setKey] = useState("0");
   const displayRecords = key === "0" ? activity : activity.filter(item => item.type === parseInt(key));

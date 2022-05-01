@@ -10,8 +10,8 @@ const PostItem = observer((props) => {
   const { post } = props;
   const navigate = useNavigate();
   const { berries } = post;
-  const berry = berries.find((item) => item.user.email === currentUser.email);
-  const hasBerry = berries.length > 0 && berry;
+  const berry = berries && berries.find((item) => item.user.email === currentUser.email);
+  const hasBerry = berries && berries.length > 0 && berry;
 
   const jumpToPost = () => navigate(`/posts/${post.id}`);
 
