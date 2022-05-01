@@ -20,6 +20,7 @@ const createNewBerry = asyncHandler(async (req, res) => {
       post: { connect: { id: parseInt(postId) } },
       user: { connect: { auth0Id } },
     },
+    type: 2,
   });
 });
 
