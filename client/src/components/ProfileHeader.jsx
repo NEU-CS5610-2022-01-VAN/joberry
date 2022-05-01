@@ -14,11 +14,12 @@ const ProfileHeader = ({ user, goToProfile }) => {
           className="mg-r-12"
           goToProfile={goToProfile}
         ></Avatar>
-        <div style={{ minHeight: "5vh" }}>
+        <div style={{ minHeight: "5vh", lineHeight:"1.1" }} className="color-base-60 fz-14">
           <h4>{user?.name}</h4>
           <p>{user?.email}</p>
           <p>{user?.company}</p>
-          <div className="color-base-60 fz-14">{user.about}</div>
+          <p>{user?.occupation}</p>
+          <p>{user?.about}</p>
         </div>
       </div>
     </div>

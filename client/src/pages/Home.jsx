@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Input, Button } from "antd";
-import { Avatar, PostItem, NewPostModal } from "@/components";
+import { Avatar, PostItem, NewPostModal, Loading } from "@/components";
 import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";
 
@@ -14,15 +14,17 @@ const Home = observer(() => {
     return () => {};
   }, []);
 
+  const berryCallback = () => {
+    postStore.getAllPosts();
+  };
   const onContentChange = (e) => setContent(e.target.value);
-  
 
   const showPostPop = () => setVisible(true);
 
   const cancelPop = () => {
     setContent("");
     setVisible(false);
-  }
+  };
 
   return (
     <>
@@ -58,18 +60,24 @@ const Home = observer(() => {
       ) : (
         ""
       )}
+
       <div className="white-container mg-t-12">
         <div style={{ marginTop: "-1.5vh" }}>
-          {postStore.postList.map((item) => (
-            <PostItem post={item} key={item.id} />
-          ))}
+          {postStore.loading ? (
+            <Loading />
+          ) : (
+            postStore.postList.map((item) => (
+              <PostItem
+                post={item}
+                key={item.id}
+                berryCallback={berryCallback}
+              />
+            ))
+          )}
         </div>
       </div>
-      <NewPostModal
-        visible={visible}
-        content={content}
-        cancelPop={cancelPop}
-      />
+
+      <NewPostModal visible={visible} content={content} cancelPop={cancelPop} />
     </>
   );
 });

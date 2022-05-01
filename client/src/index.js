@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { StoreAndAuthProvider, configureInterceptors } from "@/utils";
-import {$error} from '@/components'
+import { $error } from "@/components";
 import {
   SignIn,
   Home,
@@ -11,11 +11,11 @@ import {
   AppBase,
   ProfileSettings,
   NotFound,
-  NewPost,
+  EditPost,
   ProfileDetail,
   UserDetail,
   PostDetails,
-  SearchResult
+  SearchResult,
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -36,7 +36,7 @@ const requestedScopes = [
 function RequireAuth({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
   if (!isLoading && !isAuthenticated) {
-    $error("Sign in Required!")
+    $error("Sign in Required!");
     return <Navigate to="/sign-in" replace />;
   }
   return children;
@@ -78,11 +78,18 @@ root.render(
                 path="posts/new"
                 element={
                   <RequireAuth>
-                    <NewPost />
+                    <EditPost />
                   </RequireAuth>
                 }
               />
-
+              <Route
+                path="posts/edit/:id"
+                element={
+                  <RequireAuth>
+                    <EditPost />
+                  </RequireAuth>
+                }
+              />
               <Route
                 path="profile/settings"
                 element={
