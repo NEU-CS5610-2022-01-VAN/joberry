@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 const PostDetails = observer(() => {
   const { id } = useParams();
-  const { postStore, berryStore, userStore } = useStoreAndAuth();
+  const { postStore, userStore } = useStoreAndAuth();
   const { postDetail } = postStore;
   const berry = postDetail.berries.find(
     (item) => item.user.email === userStore.currentUser.email
