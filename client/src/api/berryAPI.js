@@ -4,8 +4,8 @@ const berryAPI = {
   createNewBerry(params) {
     return axios.post("/berries", params);
   },
-  deleteBerry(params) {
-    return axios.delete("/berries", params);
+  deleteBerry(id) {
+    return axios.delete(`/berries/${id}`);
   },
 };
 

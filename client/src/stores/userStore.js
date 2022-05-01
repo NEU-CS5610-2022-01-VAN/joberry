@@ -4,8 +4,6 @@ import { $success, $error } from "@/components";
 const nullUser = {
   name: null,
   email: null,
-  id: null,
-  auth0Id: null,
   picture: "",
 };
 const nullProfile = {

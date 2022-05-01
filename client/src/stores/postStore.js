@@ -14,6 +14,7 @@ const emptyPost = {
     name: null,
   },
   comments: [],
+  berries:[]
 };
 
 class PostStore {

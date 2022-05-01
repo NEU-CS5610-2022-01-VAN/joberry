@@ -27,6 +27,8 @@ app.use("/berries", berryRoutes);
 app.use("/tags", tagRoutes);
 app.use("/followings", followRoutes);
 
-app.listen(8000, () => {
-  console.log("Server running on http://localhost:8000 🎉 🚀");
+const PORT = parseInt(process.env.PORT || "8000");
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT} 🎉 🚀`);
 });

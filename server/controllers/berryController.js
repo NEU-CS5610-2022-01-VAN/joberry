@@ -8,8 +8,8 @@ const createNewBerry = asyncHandler(async (req, res) => {
   const { postId } = req.body;
   const newBerry = await prisma.berry.create({
     data: {
-      postId,
-      userId: { connect: { auth0Id } },
+      post: { connect: { id: postId } },
+      user: { connect: { auth0Id } },
     },
   });
   res.send(newBerry);
@@ -31,18 +31,14 @@ const getBerriesOfPost = asyncHandler(async (req, res) => {
 
 // delete a berry
 const deleteBerry = asyncHandler(async (req, res) => {
-  const auth0Id = req.user.sub;
-  const { postId } = req.body;
+  const {id} = req.params;
   const deletedBerry = await prisma.berry.delete({
     where: {
-      postId,
-      userId: { connect: { auth0Id } },
+      id: parseInt(id),
     },
   });
   res.send(deletedBerry);
 });
-
-
 
 export default {
   createNewBerry,
