@@ -67,18 +67,7 @@ model Comment {
     user             User      @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
     userId           Int
     parentId         Int?
-    parentComment    Comment?  @relation("CommentHistory", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-    childrenComments Comment[] @relation("CommentHistory")
 }
-
-// model Follows {
-//     follower    User @relation("follower", fields: [followerId], references: [id])
-//     followerId  Int
-//     following   User @relation("following", fields: [followingId], references: [id])
-//     followingId Int
-
-//     @@id([followerId, followingId])
-// }
 
 model Tag {
     id        Int      @id @default(autoincrement())
@@ -92,5 +81,4 @@ model Activity {
     id     Int  @id @default(autoincrement())
     user   User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
     userId Int
-
 }

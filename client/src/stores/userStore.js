@@ -34,8 +34,9 @@ class UserStore {
     this.userProfile[key] = value;
   }
 
-  logInUser() {
+  logInUser(user) {
     this.loggedIn = true;
+    this.currentUser = user;
   }
 
   logOut() {

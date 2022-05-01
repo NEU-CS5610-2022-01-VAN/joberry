@@ -1,7 +1,6 @@
 export { default as HeaderBar } from "./HeaderBar";
 export { default as Loading } from "./Loading";
-export { default as Comment } from "./Comment";
-export { default as AddComment } from "./AddComment";
+export { default as Comments } from "./Comments";
 export { default as Icon } from "./Icon";
 export { default as ProfileTerm } from "./ProfileTerm";
 export { AvatarActivity, Avatar } from "./avatars";
