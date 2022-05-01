@@ -1,17 +1,19 @@
 import { makeAutoObservable, flow } from "mobx";
 import { postAPI } from "@/api";
+import { $success } from "@/components";
+import { commentStore } from "@/stores";
 
 const emptyPost = {
   body: null,
   title: null,
   _count: {
     berries: 0,
-    comments: 0
+    comments: 0,
   },
   author: {
-    name: null
+    name: null,
   },
-  comments:[]
+  comments: [],
 };
 
 class PostStore {
@@ -36,8 +38,11 @@ class PostStore {
     this.loading = true;
     try {
       const data = yield postAPI.getPostDetail(id);
-      if (data) this.postDetail = data;
-      console.log(data);
+      if (data) {
+        this.postDetail = data;
+        commentStore.commentList = data.comments;
+        commentStore.postId = id;
+      }
     } catch (error) {}
     this.loading = false;
   });
@@ -55,7 +60,10 @@ class PostStore {
     this.loading = true;
     try {
       const data = yield postAPI.createNewPost(params);
-      if (data) this.postDetail = data;
+      if (data) {
+        this.postDetail = data;
+         $success('New post created!');
+      }
     } catch (error) {}
     this.loading = false;
   });
@@ -64,11 +72,14 @@ class PostStore {
     this.loading = true;
     try {
       const data = yield postAPI.updatePost(params);
-      if (data) this.postDetail = data;
+      if (data) {
+        this.postDetail = data;
+        $success("Post updated!");
+      }
     } catch (error) {}
     this.loading = false;
   });
-  
+
   deletePost = flow(function* (id) {
     this.loading = true;
     try {
@@ -76,7 +87,7 @@ class PostStore {
       if (data) this.postDetail = emptyPost;
     } catch (error) {}
     this.loading = false;
-  })
+  });
 }
 
 const postStore = new PostStore();

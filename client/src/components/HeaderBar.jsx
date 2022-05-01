@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Input } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,11 @@ import { Avatar, Icon } from "@/components";
 
 export default function HeaderBar() {
   const navigate = useNavigate();
-  const { userStore } = useStoreAndAuth();
+  const { userStore, accessToken, user } = useStoreAndAuth();
+  useEffect(() => {
+    if (accessToken) userStore.logInUser(user);
+    return () => {};
+  }, []);
 
   return (
     <div className="header-bar">
@@ -51,11 +55,9 @@ export default function HeaderBar() {
         </div>
       </div>
       <div className="align-center">
-        {!userStore.currentUser.id ? (
-          <h5 className="mg-r-12 mg-t-8 cursor-default">Guest User</h5>
-        ) : (
-          ""
-        )}
+        <h5 className="mg-r-12 mg-t-8 cursor-default">
+          {userStore.currentUser.name || "Guest User"}
+        </h5>
 
         <Avatar user={userStore.currentUser} goToProfile size="large" />
       </div>

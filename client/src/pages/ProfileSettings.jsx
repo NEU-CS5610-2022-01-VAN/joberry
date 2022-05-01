@@ -3,6 +3,7 @@ import { ProfileTerm, Avatar, $success } from "@/components";
 import { Button, Popconfirm } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useStoreAndAuth } from "@/utils";
+
 const infoItems = ["gender", "email", "occupation", "company", "about"];
 
 export default function ProfileSettings() {

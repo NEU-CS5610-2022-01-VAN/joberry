@@ -6,7 +6,7 @@ import * as stores from "@/stores";
 const StoreAuthContext = React.createContext();
 
 function StoreAndAuthProvider({ children }) {
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated, user } = useAuth0();
   const [accessToken, setAccessToken] = useState();
   const value = { accessToken, setAccessToken, ...stores };
   let token = "";
@@ -23,7 +23,7 @@ function StoreAndAuthProvider({ children }) {
 
     if (isAuthenticated) {
       getAccessToken().then(()=> {
-        stores.userStore.logInUser()
+        stores.userStore.logInUser(user);
       });
     } 
   }, [getAccessTokenSilently, isAuthenticated]);

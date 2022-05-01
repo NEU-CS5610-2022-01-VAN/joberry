@@ -7,8 +7,8 @@ const commentAPI = {
   deleteComment(id) {
     return axios.delete(`/comments/${id}`);
   },
-  getCommentsOfPost(id) {
-    return axios.get(`/comments/${id}`);
+  getCommentsOfPost(params) {
+    return axios.get("/comments", params);
   },
 };
 
