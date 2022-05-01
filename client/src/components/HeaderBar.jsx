@@ -7,7 +7,7 @@ import { Avatar, Searchbar } from "@/components";
 
 export default function HeaderBar() {
   const navigate = useNavigate();
-  const { userStore } = useStoreAndAuth();
+  // const { userStore } = useStoreAndAuth();
 
   return (
     <div className="header-bar">
