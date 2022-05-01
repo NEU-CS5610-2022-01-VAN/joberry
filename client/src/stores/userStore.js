@@ -1,9 +1,12 @@
 import { makeAutoObservable, flow } from "mobx";
 import { userAPI } from "@/api";
-
+import { $success, $error } from "@/components";
 const nullUser = {
   name: null,
   email: null,
+  id: null,
+  auth0Id: null,
+  picture: "",
 };
 const nullProfile = {
   ...nullUser,
@@ -11,19 +14,34 @@ const nullProfile = {
   about: null,
   gender: null,
   occupation: null,
-  posts:null,
+  posts: null,
   berries: null,
   comments: null,
 };
 
 class UserStore {
   loading = false;
+  loggedIn = false;
   currentUser = nullUser;
   userProfile = nullProfile;
-  otherUser = {};
+  otherUserDetail = {};
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  updateProfileTerm(key, value) {
+    this.userProfile[key] = value;
+  }
+
+  logInUser(user) {
+    this.loggedIn = true;
+    this.currentUser = user;
+  }
+
+  logOut() {
+    this.loggedIn = false;
+    this.currentUser = nullUser;
   }
 
   verifyUser = flow(function* () {
@@ -32,6 +50,7 @@ class UserStore {
       const data = yield userAPI.verifyUser();
       if (data) {
         this.currentUser = data;
+        this.loggedIn = true;
       }
     } catch (error) {}
     this.loading = false;
@@ -48,12 +67,12 @@ class UserStore {
     this.loading = false;
   });
 
-  getUserInfo = flow(function* (id) {
+  getUserDetail = flow(function* (id) {
     this.loading = true;
     try {
-      const data = yield userAPI.getProfile();
+      const data = yield userAPI.getUserDetail();
       if (data) {
-        this.otherUser = data;
+        this.otherUserDetail = data;
       }
     } catch (error) {}
     this.loading = false;
@@ -61,12 +80,21 @@ class UserStore {
 
   updateProfile = flow(function* () {
     this.loading = true;
+    const { gender, occupation, company, about } = this.userProfile;
     try {
-      const data = yield userAPI.updateProfile(this.userProfile);
+      const data = yield userAPI.updateProfile({
+        gender,
+        occupation,
+        company,
+        about,
+      });
       if (data) {
         this.userProfile = data;
+        $success("Profile updated!");
       }
-    } catch (error) {}
+    } catch (error) {
+      $error("Something happened, please try again later!");
+    }
     this.loading = false;
   });
 

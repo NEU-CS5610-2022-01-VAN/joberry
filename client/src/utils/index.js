@@ -1,3 +1,2 @@
-export { useAuthToken, AuthTokenProvider } from "./AuthTokenContext";
+export { useStoreAndAuth, StoreAndAuthProvider } from "./StoreAuthContext";
 export { configureInterceptors, configureAuthHeader } from "./axiosConfigs";
-export { useStore, StoreProvider } from "./StoreContext";

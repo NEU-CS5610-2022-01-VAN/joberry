@@ -1,38 +1,52 @@
-import React from 'react';
-import { UserInfo } from '@/components';
-import { User } from '@auth0/auth0-react';
-import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-import { EditOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import { Button } from 'antd';
+import React, { useEffect } from "react";
+import { ProfileTerm, Avatar, $success } from "@/components";
+import { Button, Popconfirm } from "antd";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useStoreAndAuth } from "@/utils";
+
+const infoItems = ["gender", "email", "occupation", "company", "about"];
 
 export default function ProfileSettings() {
-    return (
-        <div>
-            <div className='maininfo'> 
-                <div><Avatar size={64} icon={<UserOutlined />} /></div>
-                <div style={{fontSize:'18px'}}>USER NAME</div>
-                <div>
-                <Button shape="circle" icon={<EditOutlined />} />
-                </div>
-            </div>
-            <div>
-                <UserInfo label="GENDER">MALE</UserInfo>
-                <Divider  />
-                <UserInfo label="EMAIL">abc123@gmail.com</UserInfo>
-                <Divider  />
-                <UserInfo label="OCCUPATION">student</UserInfo>
-                <Divider  />
-                <UserInfo label="COMPANY">Northeastern University</UserInfo> 
-                <Divider  />       
-                <UserInfo label="ABOUT">2021 fall</UserInfo>
-            </div>
-            <div className='logout-btn'>
-                <Button type="primary" shape="round" >
-                    LOG OUT
-                </Button>
-            </div>
+  const { userStore, accessToken } = useStoreAndAuth();
+  const { logout, user } = useAuth0();
+  useEffect(() => {
+    if (accessToken) userStore.getProfile();
+    return () => {};
+  }, [accessToken]);
+  const confirmLogout = () => {
+    logout({ returnTo: window.location.origin })
+    setTimeout(() => $success("Logged Out!"), 1000);
+  }
+  return (
+    <div className="white-container" style={{ minHeight: "88vh" }}>
+      <div
+        className="align-center"
+        style={{ marginLeft: "4vw", marginTop: "5vh" }}
+      >
+        <div className="mg-r-40">
+          <Avatar size={80} user={user} goToProfile />
         </div>
-    )
+        <h4 className="mg-r-24">{user?.name}</h4>
+      </div>
+      <div style={{ marginLeft: "10vw" }}>
+        {infoItems.map((term, idx) => (
+          <ProfileTerm term={term} key={idx} />
+        ))}
+        <Popconfirm
+          title="Are you sure you want to log out?"
+          onConfirm={confirmLogout}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Button
+            style={{ marginTop: "8vh", marginLeft: "-0.4vw" }}
+            type="primary"
+            shape="round"
+          >
+            LOG OUT
+          </Button>
+        </Popconfirm>
+      </div>
+    </div>
+  );
 }
