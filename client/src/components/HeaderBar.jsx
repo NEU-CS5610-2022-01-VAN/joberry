@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, Input } from "antd";
+import { Button } from "antd";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useStoreAndAuth } from "@/utils";
-import { Avatar, Icon, Searchbar } from "@/components";
+import { Avatar, Searchbar } from "@/components";
 
 export default function HeaderBar() {
   const navigate = useNavigate();
@@ -24,11 +24,14 @@ export default function HeaderBar() {
             <Link className="mg-r-32" to="/home">
               HOME
             </Link>
-            <Link className="mg-r-32" to="/discover">
+            {/* <Link className="mg-r-32" to="/discover">
               DISCOVER
             </Link>
             <Link className="mg-r-32" to="/tags">
               TAGS
+            </Link> */}
+            <Link className="mg-r-32" to="/profile">
+              PROFILE
             </Link>
             <Searchbar
               style={{ width: "20vw" }}
