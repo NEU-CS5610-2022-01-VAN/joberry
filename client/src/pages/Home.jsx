@@ -1,16 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Button } from "antd";
-import { Avatar, PostItem } from "@/components";
+import { Avatar, PostItem, NewPostModal } from "@/components";
 import { observer } from "mobx-react";
 import { useStoreAndAuth } from "@/utils";
 
 const Home = observer(() => {
   const { postStore, userStore } = useStoreAndAuth();
+  const [visible, setVisible] = useState(false);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     postStore.getAllPosts();
     return () => {};
   }, []);
+
+  const onContentChange = (e) => setContent(e.target.value);
+  
+
+  const showPostPop = () => setVisible(true);
+
+  const cancelPop = () => {
+    setContent("");
+    setVisible(false);
+  }
 
   return (
     <>
@@ -21,19 +33,22 @@ const Home = observer(() => {
               className="cursor-pointer mg-r-16"
               size="large"
               user={userStore.currentUser}
-              style={{marginTop:"-9vh"}}
+              style={{ marginTop: "-9vh" }}
             />
             <div style={{ width: "98%" }}>
               <Input.TextArea
                 placeholder="Start new post here ..."
                 className="mg-r-12 input mg-b-12"
                 autoSize={{ minRows: 3.5, maxRows: 3.5 }}
+                onChange={onContentChange}
+                value={content}
               />
               <Button
                 shape="round"
                 type="primary"
                 style={{ float: "right" }}
                 size="large"
+                onClick={showPostPop}
               >
                 Make Post
               </Button>
@@ -44,12 +59,17 @@ const Home = observer(() => {
         ""
       )}
       <div className="white-container mg-t-12">
-        <div style={{marginTop:"-1.5vh"}}>
+        <div style={{ marginTop: "-1.5vh" }}>
           {postStore.postList.map((item) => (
             <PostItem post={item} key={item.id} />
           ))}
         </div>
       </div>
+      <NewPostModal
+        visible={visible}
+        content={content}
+        cancelPop={cancelPop}
+      />
     </>
   );
 });
