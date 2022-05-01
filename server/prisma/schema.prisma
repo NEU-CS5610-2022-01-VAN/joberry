@@ -26,22 +26,21 @@ model User {
     comments   Comment[]
     followers  User[]     @relation("UserFollows", references: [id])
     followings User[]     @relation("UserFollows", references: [id])
-    activity   Activity[]
-    // Follows    Follows[]
-    // Follows    Follows[]
+    activities Activity[]
 }
 
 model Post {
-    id        Int       @id @default(autoincrement())
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    id        Int        @id @default(autoincrement())
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
     authorId  Int
-    title     String    @db.VarChar(255)
-    body      String    @db.Text
+    title     String     @db.VarChar(255)
+    body      String     @db.Text
     comments  Comment[]
     berries   Berry[]
     tags      Tag[]
+    activity  Activity[]
 
     @@fulltext([body])
     @@fulltext([title])
@@ -58,15 +57,15 @@ model Berry {
 }
 
 model Comment {
-    id               Int       @id @default(autoincrement())
-    createdAt        DateTime  @default(now())
-    updatedAt        DateTime  @updatedAt
-    content          String    @db.VarChar(255)
-    post             Post      @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-    postId           Int
-    user             User      @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-    userId           Int
-    parentId         Int?
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    content   String   @db.VarChar(255)
+    post      Post     @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    postId    Int
+    user      User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    userId    Int
+    parentId  Int?
 }
 
 model Tag {
@@ -78,7 +77,15 @@ model Tag {
 }
 
 model Activity {
-    id     Int  @id @default(autoincrement())
-    user   User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-    userId Int
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    user      User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    userId    Int
+    post      Post     @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+    postId    Int
+    type      Int
 }
+
+//1 -> create post
+//2 -> new berry on post
+//3 -> new comment on post

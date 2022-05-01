@@ -7,6 +7,15 @@ const getAllPosts = asyncHandler(async (req, res) => {
       _count: {
         select: { comments: true, berries: true },
       },
+      berries: {
+        select: {
+          user: true,
+          id: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
   res.send(posts);
@@ -28,6 +37,17 @@ const createNewPost = asyncHandler(async (req, res) => {
     },
   });
   res.send(newPost);
+  await prisma.activity.create({
+    data: {
+      type: 1,
+      post: {
+        connect: {
+          id: newPost.id,
+        },
+      },
+      user: { connect: { auth0Id } },
+    },
+  });
 });
 
 const getPostDetail = asyncHandler(async (req, res) => {
@@ -39,13 +59,19 @@ const getPostDetail = asyncHandler(async (req, res) => {
     include: {
       comments: {
         include: {
-          user: true
-        }
+          user: true,
+        },
+      },
+      berries: {
+        select: {
+          user: true,
+          id: true,
+        },
       },
       tags: true,
-        _count: {
-          select: { comments: true, berries: true },
-        },
+      _count: {
+        select: { comments: true, berries: true },
+      },
       author: true,
     },
   });

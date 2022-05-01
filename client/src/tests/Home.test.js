@@ -32,7 +32,7 @@ jest.mock("react-router-dom", () => ({
   },
 }));
 
-jest.mock("blockquote")
+// jest.mock("blockquote")
 
 // 
 test("renders Home", () => {

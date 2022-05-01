@@ -13,15 +13,10 @@ const UserDetail = observer(() => {
     userStore.getUserDetail(id);
     return () => {};
   }, []);
-  const post = {
-    id: 1,
-    body: "awiefuyaw",
-    title: "awefcaw",
-  };
-  const activity = [{ id: 1, otherUserDetail, post, type: 1 }];
+
   return (
     <div>
-      <Profile user={otherUserDetail} activity={activity} />
+      <Profile user={otherUserDetail} activity={otherUserDetail.activities} />
     </div>
   );
 });

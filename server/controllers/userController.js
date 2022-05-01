@@ -44,9 +44,27 @@ const getProfile = asyncHandler(async (req, res) => {
       auth0Id,
     },
     include: {
-      posts: true,
-      berries: true,
-      comments: true,
+      activities: {
+        include: {
+          post: {
+            include: {
+              _count: {
+                select: { comments: true, berries: true },
+              },
+              berries: {
+                select: {
+                  user: true,
+                  id: true,
+                },
+              },
+            },
+          },
+          user: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
   res.send(user);
@@ -83,6 +101,29 @@ const getUserDetail = asyncHandler(async (req, res) => {
   const user = await prisma.user.findUnique({
     where: {
       id,
+    },
+    include: {
+      activities: {
+        include: {
+          post: {
+            include: {
+              _count: {
+                select: { comments: true, berries: true },
+              },
+              berries: {
+                select: {
+                  user: true,
+                  id: true,
+                },
+              },
+            },
+          },
+          user: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
   res.send(user);

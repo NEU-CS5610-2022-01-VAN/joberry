@@ -11,21 +11,32 @@ const tabs = [
   { key: "3", name: "Comments" },
 ];
 
-const Profile = (props) => {
+const actions = ["", "created a new post", "gave a berry to", "commented on"];
 
-  const { user, activity, goToProfile } = props;
-  const [key, setKey] = useState("0");
-  const displayRecords = key === "0" ? activity : activity.filter(item => item.type === parseInt(key));
+const Profile = (props) => {
+  let { user, activity, goToProfile } = props;
+  let [key, setKey] = useState("0");
+  activity =
+    key === "0"
+      ? activity
+      : activity.filter((item) => item.type === parseInt(key));
+  const displayRecords = activity && activity.map((record) => ({
+    time: record.createdAt,
+    action: actions[record.type],
+    ...record
+  }));
   return (
     <div>
       <ProfileHeader user={user} goToProfile={goToProfile} />
+
       <div className="white-container mg-t-12">
         <Tabs activeKey={key} onChange={setKey}>
           {tabs.map((item) => (
             <TabPane tab={item.name} key={item.key}>
-              {displayRecords.map((item) => (
-                <ActivityRecord activity={item} key={item.id} />
-              ))}
+              {displayRecords &&
+                displayRecords.map((item) => (
+                  <ActivityRecord activity={item} key={item.id} />
+                ))}
             </TabPane>
           ))}
         </Tabs>
