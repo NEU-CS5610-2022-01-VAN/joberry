@@ -36,6 +36,7 @@ const Home = observer(() => {
               size="large"
               user={userStore.currentUser}
               style={{ marginTop: "-9vh" }}
+              goToProfile
             />
             <div style={{ width: "98%" }}>
               <Input.TextArea
