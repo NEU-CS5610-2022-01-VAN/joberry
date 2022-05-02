@@ -7,9 +7,9 @@ import { Avatar, Searchbar } from "@/components";
 
 export default function HeaderBar() {
   const navigate = useNavigate();
-  const { userStore } = useStoreAndAuth();
+  const { userStore, accessToken } = useStoreAndAuth();
   const usernameClick = () => {
-    navigate("/" + userStore.user.name ? "profile" : "sign-in");
+    navigate("/" + (accessToken ? "profile" : "sign-in"));
   };
 
   return (

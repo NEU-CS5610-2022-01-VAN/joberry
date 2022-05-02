@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Divider, Popconfirm } from "antd";
-import { Comments, AvatarActivity, Icon, Loading } from "@/components";
+import { Comments, AvatarActivity, Icon, Loading, $error } from "@/components";
 import { useStoreAndAuth } from "@/utils";
 import { observer } from "mobx-react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PostDetails = observer(() => {
   const { id } = useParams();
-  const { postStore, userStore, berryStore } = useStoreAndAuth();
+  const { postStore, userStore, berryStore, accessToken } = useStoreAndAuth();
   const { currentUser } = userStore;
   const berry =
     postStore.postDetail &&
@@ -38,6 +38,9 @@ const PostDetails = observer(() => {
     });
   };
   const toggleBerry = () => {
+    if (!accessToken) {
+      return $error("Please sign in to give a berry~");
+    }
     if (hasBerry) {
       berryStore.deleteBerry(berry.id).then(() => postStore.getPostDetail(id));
     } else {
