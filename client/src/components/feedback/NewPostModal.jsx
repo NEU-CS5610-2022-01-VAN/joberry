@@ -15,7 +15,7 @@ const NewPostModal = observer((props) => {
   };
   const onFinish = () => {
     form.validateFields().then((res) => {
-      postStore.createEditPost({ ...res, tagIds: [] }).then(() => {
+      postStore.createNewPost({ ...res, tagIds: [] }).then(() => {
         onCancel();
       });
     });
