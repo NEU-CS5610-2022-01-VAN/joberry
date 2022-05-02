@@ -92,7 +92,6 @@
 - [ ] Feature 3
     - [ ] Nested Feature
 
-See the [open issues](https://github.com/NEU-CS5610-2022-01-VAN/joberry/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -100,9 +99,9 @@ See the [open issues](https://github.com/NEU-CS5610-2022-01-VAN/joberry/issues) 
 <!-- CONTACT -->
 ## Contact
 
-Xinyi Ren - [@littlerzrz](https://github.com/littlerzrz) - ren.xiny@northeastern.edu
-Chenru Wu - [@wuchenru](https://github.com/wuchenru) - wu.chenru@northeastern.edu
-Xiaoben Yin - [@XiaobenYin](https://github.com/XiaobenYin) - yin.xiaob@northeastern.edu
+- Xinyi Ren - [@littlerzrz](https://github.com/littlerzrz) - ren.xiny@northeastern.edu
+- Chenru Wu - [@wuchenru](https://github.com/wuchenru) - wu.chenru@northeastern.edu
+- Xiaoben Yin - [@XiaobenYin](https://github.com/XiaobenYin) - yin.xiaob@northeastern.edu
 
 Project Link: [https://github.com/NEU-CS5610-2022-01-VAN/joberry](https://github.com/NEU-CS5610-2022-01-VAN/joberry)
 
