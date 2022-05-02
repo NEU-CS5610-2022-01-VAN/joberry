@@ -7,7 +7,7 @@ import { useStoreAndAuth } from "@/utils";
 const PostItem = observer((props) => {
   const { userStore, berryStore, accessToken } = useStoreAndAuth();
   const { currentUser } = userStore;
-  const { post } = props;
+  const { post, className } = props;
   const navigate = useNavigate();
   const { berries } = post;
   const berry = berries && berries.find((item) => (item.user.email === currentUser.email));
@@ -31,7 +31,7 @@ const PostItem = observer((props) => {
   };
 
   return (
-    <div className="post-item" key={post.id}>
+    <div className={`post-item ${className}`} key={post.id}>
       <div className="mg-r-32 mg-t-16">
         <div style={{ minHeight: "20vh" }}>
           <h4 className="cursor-pointer" onClick={jumpToPost}>

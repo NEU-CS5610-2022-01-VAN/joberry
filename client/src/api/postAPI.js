@@ -4,6 +4,12 @@ const postAPI = {
   getAllPosts() {
     return axios.get("/posts");
   },
+  getHotCommentPosts(params) {
+    return axios.post("/discover/hot", params);
+  },
+  getHotBerryPosts(params) {
+    return axios.post("/discover/most-berries", params);
+  },
   getPostDetail(id) {
     return axios.get(`/posts/${id}`);
   },

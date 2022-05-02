@@ -16,6 +16,7 @@ import {
   UserDetail,
   PostDetails,
   SearchResult,
+  Discover
 } from "@/pages";
 import "@/setup.less";
 import "@/styles/index.less";
@@ -59,7 +60,7 @@ root.render(
             <Route path="/verify-user" element={<VerifyUser />} />
             <Route path="/" element={<AppBase />}>
               <Route index path="home" element={<Home />} />
-              <Route path="discover" element={"discover"} />
+              <Route path="discover" element={<Discover/>} />
               {/* <Route path="tags" element={"tags"} /> */}
               <Route path="users/:id" element={<UserDetail />} />
               <Route path="posts/:id" element={<PostDetails />} />

@@ -23,10 +23,10 @@ export default function HeaderBar() {
             <Link className="mg-r-32" to="/home">
               HOME
             </Link>
-            {/* <Link className="mg-r-32" to="/discover">
+            <Link className="mg-r-32" to="/discover">
               DISCOVER
             </Link>
-            <Link className="mg-r-32" to="/tags">
+            {/* <Link className="mg-r-32" to="/tags">
               TAGS
             </Link> */}
             <Link className="mg-r-32" to="/profile">

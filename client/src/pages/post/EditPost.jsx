@@ -19,11 +19,15 @@ const EditPost = observer(() => {
         }
       });
     } else {
-      postStore.updateBody("");
-      postStore.updateTitle("");
+      clearEditor();
     }
     return () => {};
   }, [id]);
+
+  const clearEditor = () => {
+    postStore.updateBody("");
+    postStore.updateTitle("");
+  };
 
   const handleError = () => {
     if (!postStore.title) return setInputError(true);
@@ -35,16 +39,16 @@ const EditPost = observer(() => {
     const params = {
       title: postStore.title,
       body: postStore.body,
-      tagIds: [],
-      // tagIds: selectedTags.map(tag=>tag.id),
     };
-    console.log(params);
     if (id) {
       postStore.updatePost({ ...params, id }).then(() => {
+        clearEditor();
         navigate(`/posts/${id}`);
       });
     } else {
       postStore.createNewPost(params).then(() => {
+        clearEditor();
+
         postStore.postDetail.id &&
           navigate(`/posts/${postStore.postDetail.id}`);
       });

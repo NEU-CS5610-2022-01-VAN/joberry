@@ -23,6 +23,8 @@ class PostStore {
   postDetail = emptyPost;
   title = "";
   body = "";
+  hotBerryPosts = [];
+  hotCommentPosts = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -45,14 +47,30 @@ class PostStore {
     this.loading = false;
   });
 
+  getHotCommentPosts = flow(function* (params) {
+    this.loading = true;
+    try {
+      const data = yield postAPI.getHotCommentPosts(params);
+      if (data) this.hotCommentPosts = data;
+    } catch (error) {}
+    this.loading = false;
+  });
+
+  getHotBerryPosts = flow(function* (params) {
+    this.loading = true;
+    try {
+      const data = yield postAPI.getHotBerryPosts(params);
+      if (data) this.hotBerryPosts = data;
+    } catch (error) {}
+    this.loading = false;
+  });
+
   getPostDetail = flow(function* (id) {
     this.loading = true;
     try {
       const data = yield postAPI.getPostDetail(id);
       if (data) {
         this.postDetail = data;
-        this.title = this.postDetail.title;
-        this.body = this.postDetail.body;
         commentStore.commentList = data.comments;
         commentStore.postId = id;
       }

@@ -8,12 +8,16 @@ import { useNavigate, useParams } from "react-router-dom";
 const PostDetails = observer(() => {
   const { id } = useParams();
   const { postStore, userStore, berryStore } = useStoreAndAuth();
-  const { postDetail } = postStore;
   const { currentUser } = userStore;
   const berry =
-    postDetail.berries &&
-    postDetail.berries.find((item) => item.user.email === currentUser.email);
-  const hasBerry = postDetail.berries && postDetail.berries.length > 0 && berry;
+    postStore.postDetail.berries &&
+    postStore.postDetail.berries.find(
+      (item) => item.user.email === currentUser.email
+    );
+  const hasBerry =
+    postStore.postDetail.berries &&
+    postStore.postDetail.berries.length > 0 &&
+    berry;
 
   useEffect(() => {
     postStore.getPostDetail(id);
@@ -21,8 +25,8 @@ const PostDetails = observer(() => {
   }, []);
 
   const activity = {
-    user: postDetail.author,
-    time: postDetail.createdAt,
+    user: postStore.postDetail.author,
+    time: postStore.postDetail.createdAt,
     action: "posted",
   };
   const navigate = useNavigate();
@@ -40,6 +44,11 @@ const PostDetails = observer(() => {
         .then(() => postStore.getPostDetail(id));
     }
   };
+  const handleEdit = () => {
+    postStore.updateBody(postStore.postDetail.body);
+    postStore.updateTitle(postStore.postDetail.title);
+    navigate(`/posts/edit/${id}`);
+  };
 
   return (
     <div className="white-container" style={{ padding: "3vw" }}>
@@ -47,13 +56,14 @@ const PostDetails = observer(() => {
         <Loading />
       ) : (
         <>
-          <h3 className="mg-b-24">{postDetail.title}</h3>
+          <h3 className="mg-b-24">{postStore.postDetail.title}</h3>
           <div className="space-between">
-            <AvatarActivity activity={activity} reverse />
-            {postDetail.author.email === currentUser.email ? (
+            {activity && <AvatarActivity activity={activity} reverse />}
+            {postStore.postDetail.author &&
+            postStore.postDetail.author.email === currentUser.email ? (
               <div className="display-flex">
                 <small
-                  onClick={() => navigate(`/posts/edit/${id}`)}
+                  onClick={handleEdit}
                   className="fz-14 mg-r-12 color-berry-100 cursor-pointer"
                 >
                   edit
@@ -76,7 +86,7 @@ const PostDetails = observer(() => {
           <Divider />
           <div
             style={{ minHeight: "55vh" }}
-            dangerouslySetInnerHTML={{ __html: postDetail.body }}
+            dangerouslySetInnerHTML={{ __html: postStore.postDetail.body }}
           ></div>
           <div className="align-center color-base-60 fz-14 mg-t-80">
             <div className="mg-r-24">
@@ -85,10 +95,10 @@ const PostDetails = observer(() => {
                 type={hasBerry ? "icon-berry" : "icon-berry-gray"}
                 onClick={toggleBerry}
               />
-              BERRIES · {postDetail._count.berries}
+              BERRIES · {postStore.postDetail._count.berries}
             </div>
             <div className="cursor-defualt">
-              COMMENTS · {postDetail._count.comments}
+              COMMENTS · {postStore.postDetail._count.comments}
             </div>
           </div>
           <Comments />

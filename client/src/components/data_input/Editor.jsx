@@ -11,7 +11,7 @@ const editorOptions = {
     ["fontColor", "hiliteColor", "lineHeight", "align"],
     ["outdent", "indent", "list", "table"],
     ["horizontalRule", "codeView", "showBlocks"],
-    ["link"],
+    ["link", "image", "video"],
     ["fullScreen", "preview"],
   ],
   //   imageAccept: ".jpg, .png",
