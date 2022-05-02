@@ -8,7 +8,7 @@ import {
   berryRoutes,
   tagRoutes,
   followRoutes,
-  
+  discoverRoutes,
 } from "./routes/index.js";
 
 const app = express();
@@ -27,6 +27,7 @@ app.use("/comments", commentRoutes);
 app.use("/berries", berryRoutes);
 app.use("/tags", tagRoutes);
 app.use("/followings", followRoutes);
+app.use("/discover", discoverRoutes);
 
 const PORT = parseInt(process.env.PORT || "8000");
 

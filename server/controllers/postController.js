@@ -29,11 +29,6 @@ const createNewPost = asyncHandler(async (req, res) => {
       title,
       body,
       author: { connect: { auth0Id } },
-      tags: {
-        connect: tagIds.map((id) => {
-          id;
-        }),
-      },
     },
   });
   res.send(newPost);
@@ -68,7 +63,6 @@ const getPostDetail = asyncHandler(async (req, res) => {
           id: true,
         },
       },
-      tags: true,
       _count: {
         select: { comments: true, berries: true },
       },
@@ -89,7 +83,23 @@ const updatePost = asyncHandler(async (req, res) => {
     data: {
       title,
       body,
-      tags, // update tags
+    },
+    include: {
+      comments: {
+        include: {
+          user: true,
+        },
+      },
+      berries: {
+        select: {
+          user: true,
+          id: true,
+        },
+      },
+      _count: {
+        select: { comments: true, berries: true },
+      },
+      author: true,
     },
   });
   res.send(updatedPost);
@@ -168,42 +178,14 @@ const searchPostByTags = asyncHandler(async (req, res) => {
   res.send(searchResult);
 });
 
-const getHotPosts = asyncHandler(async (req, res) => {
-  const {size} = req.body;
-  const take = size || 5;
-  const posts = await prisma.post.findMany({
-    orderBy: {
-      comments: {
-        _count: 'desc'
-      }
-    },
-    take
-  })
-  res.send(posts)
-})
 
-const getMostBerryPosts = asyncHandler(async (req, res) => {
-  const { size } = req.body;
-  const take = size || 5;
-  const posts = await prisma.post.findMany({
-    orderBy: {
-      berries: {
-        _count: "desc",
-      },
-    },
-    take,
-  });
-  res.send(posts);
-});
 
 export default {
   getAllPosts,
-  getHotPosts,
   createNewPost,
   getPostDetail,
   updatePost,
   deletePost,
   searchPost,
   searchPostByTags,
-  getMostBerryPosts,
 };

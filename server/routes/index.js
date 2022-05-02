@@ -4,6 +4,8 @@ import tagRoutes from "./tagRoutes.js";
 import berryRoutes from "./berryRoutes.js";
 import commentRoutes from "./commentRoutes.js";
 import followRoutes from "./followRoutes.js";
+import discoverRoutes from "./discoverRoutes.js";
+
 export {
   berryRoutes,
   commentRoutes,
@@ -11,4 +13,5 @@ export {
   userRoutes,
   followRoutes,
   tagRoutes,
+  discoverRoutes,
 };

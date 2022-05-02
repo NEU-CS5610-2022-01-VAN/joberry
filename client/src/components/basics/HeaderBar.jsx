@@ -33,7 +33,7 @@ export default function HeaderBar() {
               PROFILE
             </Link>
             <Searchbar
-              style={{ width: "20vw" }}
+              style={{ width: "15vw" }}
               className="mg-r-12 search-bar"
               size="large"
             />
@@ -51,7 +51,7 @@ export default function HeaderBar() {
         >
           New Post
         </Button>
-        <h5 className="mg-r-12 mg-t-8 cursor-default">
+        <h5 className="mg-r-12 mg-t-8 cursor-pointer header-username" onClick={()=> navigate("/profile")} >
           {userStore.currentUser.name || "Guest User"}
         </h5>
 

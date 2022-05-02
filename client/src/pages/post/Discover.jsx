@@ -17,8 +17,8 @@ const team = [
   },
   {
     name: "Xiaoben Yin",
-    link:"https://www.linkedin.com/in/teresa-yin/",
-    src: "https://media-exp1.licdn.com/dms/image/D5635AQHg1stKAesO2w/profile-framedphoto-shrink_800_800/0/1643077057984?e=2147483647&v=beta&t=yaRQomxs_AbZWgFQtHqGJ9M3kZIezJzbN7CbeJIzhnY",
+    link: "https://www.linkedin.com/in/teresa-yin/",
+    src: "https://media-exp1.licdn.com/dms/image/C5603AQFSkBKmO6IhYQ/profile-displayphoto-shrink_800_800/0/1643077056916?e=1657152000&v=beta&t=sLg6TzxnWeGSkTqB-LzVSIQFA2A-3zWbJrzzlSe64O8",
   },
 ];
 
