@@ -68,7 +68,7 @@ const PostDetails = observer(() => {
                   onClick={handleEdit}
                   className="fz-14 mg-r-12 color-berry-100 cursor-pointer"
                 >
-                  edit
+                  EDIT
                 </small>
                 <Popconfirm
                   title="Are you sure you want to delete?"
@@ -77,7 +77,7 @@ const PostDetails = observer(() => {
                   cancelText="No"
                 >
                   <small className="fz-14 color-berry-100 cursor-pointer">
-                    delete
+                    DELETE
                   </small>
                 </Popconfirm>
               </div>

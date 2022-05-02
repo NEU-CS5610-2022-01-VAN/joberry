@@ -38,7 +38,7 @@ const Profile = (props) => {
         ) : (
           <Tabs activeKey={key} onChange={setKey}>
             {tabs.map((item) => (
-              <TabPane tab={item.name} key={item.key}>
+              <TabPane tab={item.name.toUpperCase()} key={item.key}>
                 {displayRecords &&
                   displayRecords.map((item) => (
                     <ActivityRecord activity={item} key={item.id} berryCallback={props.berryCallback} />

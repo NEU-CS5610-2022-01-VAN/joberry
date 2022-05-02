@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 const Searchbar = observer((props) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
-  const makeSearch = () => keyword && navigate(`/search/${keyword}`);
+  const makeSearch = () => {
+    keyword && navigate(`/search/${keyword}`);
+    setKeyword("");
+  };
 
   return (
     <>
