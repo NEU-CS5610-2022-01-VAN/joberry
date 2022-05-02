@@ -24,7 +24,7 @@
     <a href="https://github.com/NEU-CS5610-2022-01-VAN/joberry"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/NEU-CS5610-2022-01-VAN/joberry">View Demo</a>
+    <a href="https://joberry.vercel.app/">View Live Demo</a>
     ·
     <a href="https://github.com/NEU-CS5610-2022-01-VAN/joberry/issues">Report Bug</a>
     ·
