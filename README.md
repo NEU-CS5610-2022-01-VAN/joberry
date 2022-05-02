@@ -78,13 +78,25 @@ Homepage:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<!-- ROADMAP -->
-## Roadmap
+<!-- FEATURES -->
+## Features
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- Backend Features
+  - Users Table & API
+  - Posts Table & API
+  - Activities Table & API
+  - Berries Table & API
+  - Comments Table & API
+
+- Frontend Features
+  - Home Page
+  - Post Detail Page
+  - User Detail Page
+  - New/Edit Post Page
+  - Search Result Page
+  - Sign In Page
+  - Profile Page 
+  - Profile Settings Page
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
