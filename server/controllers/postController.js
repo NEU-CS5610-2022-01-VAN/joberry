@@ -114,12 +114,12 @@ const searchPost = asyncHandler(async (req, res) => {
       OR: [
         {
           title: {
-            contains: search,
+            search,
           },
         },
         {
           body: {
-            contains: search,
+            search,
           },
         },
         {
@@ -137,6 +137,17 @@ const searchPost = asyncHandler(async (req, res) => {
           },
         },
       ],
+    },
+    include: {
+      _count: {
+        select: { comments: true, berries: true },
+      },
+      berries: {
+        select: {
+          user: true,
+          id: true,
+        },
+      },
     },
   });
   res.send(searchResult);
@@ -157,12 +168,42 @@ const searchPostByTags = asyncHandler(async (req, res) => {
   res.send(searchResult);
 });
 
+const getHotPosts = asyncHandler(async (req, res) => {
+  const {size} = req.body;
+  const take = size || 5;
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      comments: {
+        _count: 'desc'
+      }
+    },
+    take
+  })
+  res.send(posts)
+})
+
+const getMostBerryPosts = asyncHandler(async (req, res) => {
+  const { size } = req.body;
+  const take = size || 5;
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      berries: {
+        _count: "desc",
+      },
+    },
+    take,
+  });
+  res.send(posts);
+});
+
 export default {
   getAllPosts,
+  getHotPosts,
   createNewPost,
   getPostDetail,
   updatePost,
   deletePost,
   searchPost,
   searchPostByTags,
+  getMostBerryPosts,
 };
