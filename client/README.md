@@ -37,18 +37,26 @@ Running for development
 ### Frontend Routes
 
 ```js
-"/sign-in"
-"/verify-user"
-"/"
+//basic routes for everyone
 "/home"
 "/discover"
-"/tags"
+"/search/:search"
+
 "/users/:id"
 "/posts/:id"
-"/404"
-"/search/:search"
-"/profile"
+
+//login & verify routes
+"/sign-in"
+"/verify-user"
+
+
+// routes with authorization/logged in only 
 "/posts/new"
 "/posts/edit/:id"
+"/profile"
 "/profile/settings"
+
+// not found route
+"/404"
+
 ```

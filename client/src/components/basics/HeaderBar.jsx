@@ -13,8 +13,7 @@ export default function HeaderBar() {
     <div className="header-bar">
       <div className="align-center">
         <img
-          className="mg-r-40 cursor-pointer"
-          height="25vh"
+          className="mg-r-40 cursor-pointer joberry-logo"
           src="/images/Joberry.png"
           alt="joberry"
           onClick={() => navigate("/home")}

@@ -60,7 +60,7 @@ root.render(
             <Route path="/" element={<AppBase />}>
               <Route index path="home" element={<Home />} />
               <Route path="discover" element={"discover"} />
-              <Route path="tags" element={"tags"} />
+              {/* <Route path="tags" element={"tags"} /> */}
               <Route path="users/:id" element={<UserDetail />} />
               <Route path="posts/:id" element={<PostDetails />} />
               <Route path="404" element={<NotFound />} />

@@ -4,7 +4,7 @@ import { Avatar } from "@/components";
 const ProfileHeader = ({ user, goToProfile }) => {
   return (
     <div
-      className="white-container space-between"
+      className="white-container space-between  profile-header"
       style={{ width: "100%", minHeight: "18vh" }}
     >
       <div className="align-center">
@@ -14,7 +14,10 @@ const ProfileHeader = ({ user, goToProfile }) => {
           className="mg-r-12"
           goToProfile={goToProfile}
         ></Avatar>
-        <div style={{ minHeight: "5vh", lineHeight:"1.1" }} className="color-base-60 fz-14">
+        <div
+          style={{ minHeight: "5vh", lineHeight: "1.1" }}
+          className="color-base-60 fz-14"
+        >
           <h4>{user?.name}</h4>
           <p>{user?.email}</p>
           <p>{user?.company}</p>

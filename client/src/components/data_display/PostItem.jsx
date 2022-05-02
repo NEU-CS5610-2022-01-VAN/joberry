@@ -38,8 +38,7 @@ const PostItem = observer((props) => {
             {post.title}
           </h4>
           <div
-            className="cursor-pointer show-ellipsis" 
-            style={{height:"10vh", width:"60vw"}}
+            className="cursor-pointer show-ellipsis post-item-body" 
             onClick={jumpToPost}
             dangerouslySetInnerHTML={{ __html: post.body }}
           ></div>
