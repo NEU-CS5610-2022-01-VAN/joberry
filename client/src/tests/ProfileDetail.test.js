@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ProfileDetail from "../pages/ProfileDetail";
-import userEvent from "@testing-library/user-event";
 
 let mockIsAuthenticated = true;
 
@@ -44,15 +43,15 @@ expect(screen.getByText("chenru")).toBeInTheDocument();
 expect(screen.getByText("chenru@gmail.com")).toBeInTheDocument();
 })
 
-// enter click setting should navigate
-test("enter ENTER button navigates to /settings", () => {
-  render(
-    <MemoryRouter initialEntries={["/"]}>
-      <ProfileDetail />
-    </MemoryRouter>
-  );
+// // enter click setting should navigate
+// test("enter ENTER button navigates to /settings", () => {
+//   render(
+//     <MemoryRouter initialEntries={["/"]}>
+//       <ProfileDetail />
+//     </MemoryRouter>
+//   );
 
-  const enterSettingsButton = screen.getByText("Settings");
-  userEvent.click(enterSettingsButton);
-  expect(mockUseNavigate).toHaveBeenCalledWith("/settings");
-});
+//   const enterSettingsButton = screen.getByText("Settings");
+//   userEvent.click(enterSettingsButton);
+//   expect(mockUseNavigate).toHaveBeenCalledWith("/settings");
+// });

@@ -43,7 +43,7 @@ test("renders Home", () => {
   );
   expect(screen.getByText("Jobbery")).toBeInTheDocument();
   expect(screen.getByText("HOME")).toBeInTheDocument();
-  expect(screen.getByText("DISCOVER")).toBeInTheDocument();
+  expect(screen.getByText("PROFILE")).toBeInTheDocument();
   expect(screen.getByText("New Post")).toBeInTheDocument();
   
   });

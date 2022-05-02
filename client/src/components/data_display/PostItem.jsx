@@ -17,7 +17,7 @@ const PostItem = observer((props) => {
 
   const handleBerryClick = () => {
     if (!accessToken) {
-     return $error("Login required to give a berry~");
+     return $error("Please sign in to give a berry~");
     }
     if (hasBerry) {
       berryStore

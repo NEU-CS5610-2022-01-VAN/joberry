@@ -14,10 +14,9 @@ const Searchbar = observer((props) => {
       <Input
         {...props}
         placeholder="Search for posts"
-        className="mg-r-12"
         suffix={
           <Icon
-            className="cursor-pointer"
+            className="cursor-pointer mg-r-8"
             onClick={makeSearch}
             type="icon-search"
           />
