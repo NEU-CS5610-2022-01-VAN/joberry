@@ -52,13 +52,21 @@
 </details>
 
 
+<!-- DESIGN -->
+## Design
+Identity & Typography:
+
+[![Identity][identity-image]](https://joberry.vercel.com)
+
+Screens:
+
+[![Identity][screens-image]](https://joberry.vercel.com)
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-Identity:
-[![Identity][identity-screenshot]](https://joberry.vercel.com)
 
+## About The Project
 Homepage:
+
 [![Joberry Website Screen Shot][product-screenshot]](https://joberry.vercel.com)
 
 
@@ -133,5 +141,6 @@ Project Link: [https://github.com/NEU-CS5610-2022-01-VAN/joberry](https://github
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/xinyi-ren-31613362
 [product-screenshot]: images/screenshot.png
-[identity-screenshot]: images/design.png
+[identity-image]: images/identity.png
+[screens-image]: images/screens.png
 
