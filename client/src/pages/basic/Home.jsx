@@ -14,9 +14,8 @@ const Home = observer(() => {
     return () => {};
   }, []);
 
-  const berryCallback = () => {
-    postStore.getAllPosts();
-  };
+  const fetchAllPosts = () => postStore.getAllPosts();
+
   const onContentChange = (e) => setContent(e.target.value);
 
   const showPostPop = () => setVisible(true);
@@ -24,6 +23,7 @@ const Home = observer(() => {
   const cancelPop = () => {
     setContent("");
     setVisible(false);
+    fetchAllPosts();
   };
 
   return (
@@ -71,7 +71,7 @@ const Home = observer(() => {
               <PostItem
                 post={item}
                 key={item.id}
-                berryCallback={berryCallback}
+                berryCallback={fetchAllPosts}
               />
             ))
           )}
