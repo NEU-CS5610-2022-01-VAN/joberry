@@ -48,7 +48,6 @@ const EditPost = observer(() => {
     } else {
       postStore.createNewPost(params).then(() => {
         clearEditor();
-
         postStore.postDetail.id &&
           navigate(`/posts/${postStore.postDetail.id}`);
       });

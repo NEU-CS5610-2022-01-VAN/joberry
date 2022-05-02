@@ -10,11 +10,13 @@ const PostDetails = observer(() => {
   const { postStore, userStore, berryStore } = useStoreAndAuth();
   const { currentUser } = userStore;
   const berry =
+    postStore.postDetail &&
     postStore.postDetail.berries &&
     postStore.postDetail.berries.find(
       (item) => item.user.email === currentUser.email
     );
   const hasBerry =
+    postStore.postDetail &&
     postStore.postDetail.berries &&
     postStore.postDetail.berries.length > 0 &&
     berry;

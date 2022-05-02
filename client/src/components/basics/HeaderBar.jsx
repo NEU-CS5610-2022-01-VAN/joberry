@@ -8,6 +8,9 @@ import { Avatar, Searchbar } from "@/components";
 export default function HeaderBar() {
   const navigate = useNavigate();
   const { userStore } = useStoreAndAuth();
+  const usernameClick = () => {
+    navigate("/" + userStore.user.name ? "profile" : "sign-in");
+  };
 
   return (
     <div className="header-bar">
@@ -51,10 +54,12 @@ export default function HeaderBar() {
         >
           New Post
         </Button>
-        <h5 className="mg-r-12 mg-t-8 cursor-pointer header-username" onClick={()=> navigate("/profile")} >
-          {userStore.currentUser.name || "Guest User"}
-        </h5>
-
+        <div
+          className="cursor-pointer color-berry-80 mg-r-12 header-username align-center"
+          onClick={usernameClick}
+        >
+          {userStore.currentUser.name || " SIGN IN / SIGN UP"}
+        </div>
         <Avatar user={userStore.currentUser} goToProfile size="large" />
       </div>
     </div>

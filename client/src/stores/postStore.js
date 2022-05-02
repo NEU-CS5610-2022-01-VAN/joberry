@@ -92,7 +92,7 @@ class PostStore {
     try {
       const data = yield postAPI.createNewPost(params);
       if (data) {
-        this.postDetail = data;
+        this.postDetail.id = data.id;
         $success("New post created!");
       }
     } catch (error) {}
