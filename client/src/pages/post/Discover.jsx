@@ -80,9 +80,9 @@ const Discover = observer(() => {
         <h4 className="color-berry-100" style={{ textAlign: "center" }}>
           MEET THE TEAM
         </h4>
-        <div className="space-around cursor-pointer mg-t-40">
+        <div className="space-evenly cursor-pointer mg-t-40">
           {team.map(({ src, name, link }) => (
-            <div key={name} onClick={() => window.open(link)} style={{width:"80px"}}>
+            <div key={name} onClick={() => window.open(link)} style={{width:"4.5vw", textAlign:"center"}}>
               <Avatar size={72} src={src} alt={name} />
               <div className="mg-t-12 bold">{name}</div>
             </div>

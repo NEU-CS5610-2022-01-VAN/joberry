@@ -8,5 +8,5 @@ export { default as NotFound } from "./not_found/NotFound";
 export { default as EditPost } from "./post/EditPost";
 export { default as ProfileDetail } from "./profile/ProfileDetail";
 export { default as UserDetail } from "./user/UserDetail";
-export { default as SearchResult } from "./post/SearchResult";
+export { default as SearchResult } from "./search/SearchResult";
 export { default as Discover } from "./post/Discover";
