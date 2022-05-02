@@ -62,7 +62,7 @@ const Home = observer(() => {
         ""
       )}
 
-      <div className="white-container mg-t-12">
+      <div className="white-container mg-t-12 home-feed">
         <div style={{ marginTop: "-1.5vh" }}>
           {postStore.loading ? (
             <Loading />

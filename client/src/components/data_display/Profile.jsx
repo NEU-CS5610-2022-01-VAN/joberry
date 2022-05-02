@@ -30,7 +30,7 @@ const Profile = (props) => {
   
   return (
     <div>
-      <ProfileHeader user={user} goToProfile={goToProfile} />
+      <ProfileHeader user={user} goToProfile={goToProfile} loading={loading} />
 
       <div className="white-container mg-t-12">
         {loading ? (

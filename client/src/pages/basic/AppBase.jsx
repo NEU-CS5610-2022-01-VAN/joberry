@@ -6,12 +6,19 @@ import { HeaderBar, Loading } from "@/components";
 export default function AppBase(props) {
   const { isLoading } = useAuth0();
   if (isLoading) return <Loading />;
-  
+
   return (
-    <div className="app-base">
+    <div style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
       <HeaderBar />
-      <div className="app-content">
-        <Outlet />
+      <div className="app-base">
+        <div>
+          <div className="app-content">
+            <Outlet />
+          </div>
+          <footer className="color-base-80 mg-t-12 mg-b-24" style={{ textAlign:"center"}}>
+            @2022 Joberry Inc. All rights reserved.
+          </footer>
+        </div>
       </div>
     </div>
   );
