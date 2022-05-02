@@ -30,6 +30,7 @@ const createNewPost = asyncHandler(async (req, res) => {
       body,
       author: { connect: { auth0Id } },
     },
+    
   });
   res.send(newPost);
   await prisma.activity.create({
