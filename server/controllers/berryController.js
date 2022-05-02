@@ -17,10 +17,14 @@ const createNewBerry = asyncHandler(async (req, res) => {
 
   await prisma.activity.create({
     data: {
-      post: { connect: { id: parseInt(postId) } },
+      type: 2,
+      post: {
+        connect: {
+          id: postId,
+        },
+      },
       user: { connect: { auth0Id } },
     },
-    type: 2,
   });
 });
 

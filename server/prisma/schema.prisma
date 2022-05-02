@@ -40,7 +40,7 @@ model Post {
     comments  Comment[]
     berries   Berry[]
     tags      Tag[]
-    activity  Activity[]
+    activities  Activity[]
 
     @@fulltext([body])
     @@fulltext([title])

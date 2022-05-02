@@ -14,12 +14,15 @@ const createNewComment = asyncHandler(async (req, res) => {
     },
   });
   res.send(newComment);
+  
   await prisma.activity.create({
     data: {
-      post: { connect: { id: parseInt(postId) } },
+      type: 3,
+      post: {
+        connect: { id: parseInt(postId)},
+      },
       user: { connect: { auth0Id } },
     },
-    type: 3,
   });
 });
 
