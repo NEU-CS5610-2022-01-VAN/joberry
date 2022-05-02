@@ -19,7 +19,7 @@
 <h3 align="center">Joberry</h3>
 
   <p align="center">
-    Joberry is a Web App for people seeking job advices and resources. 
+    Joberry is a Web App for people seeking job advices and resources. People can post their experiences and ideas during job hunting, and also give advices to others.
     <br />
     <a href="https://github.com/NEU-CS5610-2022-01-VAN/joberry"><strong>Explore the docs »</strong></a>
     <br />
