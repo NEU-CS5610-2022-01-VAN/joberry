@@ -90,7 +90,6 @@ const PostDetails = observer(() => {
           </div>
           <Divider />
           <div
-            style={{ minHeight: "55vh" }}
             dangerouslySetInnerHTML={{ __html: postStore.postDetail.body }}
           ></div>
           <div className="align-center color-base-60 fz-14 mg-t-80">
