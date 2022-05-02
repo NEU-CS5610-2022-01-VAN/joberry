@@ -51,6 +51,13 @@ const deleteBerry = asyncHandler(async (req, res) => {
     },
   });
   res.send(deletedBerry);
+
+  await prisma.activity.deleteMany({
+    where: {
+      type: 2,
+      berryId: parseInt(id),
+    },
+  });
 });
 
 export default {

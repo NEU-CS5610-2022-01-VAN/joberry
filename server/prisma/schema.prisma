@@ -30,17 +30,17 @@ model User {
 }
 
 model Post {
-    id        Int        @id @default(autoincrement())
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @updatedAt
-    author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
-    authorId  Int
-    title     String     @db.VarChar(255)
-    body      String     @db.Text
-    comments  Comment[]
-    berries   Berry[]
-    tags      Tag[]
-    activities  Activity[]
+    id         Int        @id @default(autoincrement())
+    createdAt  DateTime   @default(now())
+    updatedAt  DateTime   @updatedAt
+    author     User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    authorId   Int
+    title      String     @db.VarChar(255)
+    body       String     @db.Text
+    comments   Comment[]
+    berries    Berry[]
+    tags       Tag[]
+    activities Activity[]
 
     @@fulltext([body])
     @@fulltext([title])
@@ -85,6 +85,8 @@ model Activity {
     post      Post     @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
     postId    Int
     type      Int
+    berryId   Int?
+    commentId Int?
 }
 
 //1 -> create post

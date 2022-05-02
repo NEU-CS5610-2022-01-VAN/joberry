@@ -14,12 +14,12 @@ const createNewComment = asyncHandler(async (req, res) => {
     },
   });
   res.send(newComment);
-  
+
   await prisma.activity.create({
     data: {
       type: 3,
       post: {
-        connect: { id: parseInt(postId)},
+        connect: { id: parseInt(postId) },
       },
       user: { connect: { auth0Id } },
     },
@@ -49,6 +49,12 @@ const deleteComment = asyncHandler(async (req, res) => {
     },
   });
   res.send(deletedComments);
+  await prisma.activity.deleteMany({
+    where: {
+      type: 3,
+      commentId: parseInt(id),
+    },
+  });
 });
 
 export default {

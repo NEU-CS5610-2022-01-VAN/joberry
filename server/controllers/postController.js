@@ -115,6 +115,12 @@ const deletePost = asyncHandler(async (req, res) => {
     },
   });
   res.send(deletedPost);
+    await prisma.activity.deleteMany({
+      where: {
+        type: 1,
+        postId: parseInt(id),
+      },
+    });
 });
 
 // searches posts by title or content
