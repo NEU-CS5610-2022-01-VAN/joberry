@@ -1,6 +1,6 @@
 import { makeAutoObservable, flow } from "mobx";
 import { postAPI } from "@/api";
-import { $success } from "@/components";
+import { $success, $error } from "@/components";
 import { commentStore } from "@/stores";
 
 const emptyPost = {
@@ -95,7 +95,9 @@ class PostStore {
         this.postDetail.id = data.id;
         $success("New post created!");
       }
-    } catch (error) {}
+    } catch (error) {
+      $error(error.response.statusText)
+    }
     this.loading = false;
   });
 
