@@ -49,8 +49,10 @@
       </ul>
     </li>
     <li><a href="#about-the-project">About The Project</a></li>
+    <ul>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#features">Features</a></li>
+      </ul>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -82,7 +84,7 @@ Homepage:
 
 
 
-## Built With
+### Built With
 
 * [MySQL](https://www.mysql.com/)
 * [Express.js](https://expressjs.com/)
@@ -95,7 +97,7 @@ Homepage:
 
 
 <!-- FEATURES -->
-## Features
+### Features
 
 - Backend Features
   - Users Table & API
@@ -179,13 +181,36 @@ Homepage:
 ### Backend File Structue
 
 ```
-.
 ├── controllers
 ├── middleware
 ├── models
 ├── prisma
 └── routes
 ```
+
+### Backend Routes
+```js
+//basic API without authorization check
+
+GET "/posts"
+GET "/posts/:id"
+
+GET "/users/:id"
+
+GET "/discover/"
+"/search/:search"
+
+
+"/verify-user"
+
+//
+"/posts/new"
+"/posts/edit/:id"
+"/profile"
+"/profile/settings"
+
+// not found route
+"/404"
 
 
 
