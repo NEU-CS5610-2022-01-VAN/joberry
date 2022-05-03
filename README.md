@@ -40,12 +40,17 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#design">Design</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#identity-and-typography">Identity and Typography</a></li>
+      </ul>
+       <ul>
+        <li><a href="#screens">Screens</a></li>
       </ul>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -54,11 +59,11 @@
 
 <!-- DESIGN -->
 ## Design
-Identity & Typography:
+#### Identity and Typography:
 
 [![Identity][identity-image]](https://joberry.vercel.com)
 
-Screens:
+#### Screens:
 
 [![Identity][screens-image]](https://joberry.vercel.com)
 
@@ -75,7 +80,7 @@ Homepage:
 
 
 
-### Built With
+## Built With
 
 * [MySQL](https://www.mysql.com/)
 * [Express.js](https://expressjs.com/)
