@@ -119,7 +119,8 @@ Homepage:
 
 
 <!-- FRONTEND -->
-### Frontend Structure
+## Frontend
+### Frontend File Structure
 
 ```
 ├── api
@@ -172,6 +173,20 @@ Homepage:
 "/404"
 
 ```
+
+## Backend
+
+### Backend File Structue
+
+```
+.
+├── controllers
+├── middleware
+├── models
+├── prisma
+└── routes
+```
+
 
 
 <!-- CONTACT -->
