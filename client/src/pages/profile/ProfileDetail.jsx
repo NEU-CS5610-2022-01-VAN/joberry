@@ -26,7 +26,7 @@ const ProfilieDetail = observer(() => {
           right: "1vw",
         }}
       >
-        <Button
+       {!userStore.loading ?  <Button
           type="primary"
           ghost
           size="large"
@@ -34,7 +34,7 @@ const ProfilieDetail = observer(() => {
           onClick={() => navigate("/profile/settings")}
         >
           Settings
-        </Button>
+        </Button> : ""}
       </div>
       <div>
         <Profile

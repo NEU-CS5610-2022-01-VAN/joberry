@@ -23,8 +23,7 @@ const ProfileHeader = ({ user, goToProfile, loading }) => {
           >
             <h4>{user?.name}</h4>
             <p>{user?.email}</p>
-            <p>{user?.company}</p>
-            <p>{user?.occupation}</p>
+            <p>{`${user?.occupation} ${user?.company ? `@ ${user?.company}` : ""} `}</p>
             <p>{user?.about}</p>
           </div>
         </div>
