@@ -67,6 +67,8 @@
 
 [![Identity][screens-image]](https://joberry.vercel.com)
 
+
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
@@ -120,8 +122,8 @@ Homepage:
 ## Contact
 
 - Xinyi Ren - [@littlerzrz](https://github.com/littlerzrz) - ren.xiny@northeastern.edu
-- Chenru Wu - [@wuchenru](https://github.com/wuchenru) - wu.chenru@northeastern.edu
 - Xiaoben Yin - [@XiaobenYin](https://github.com/XiaobenYin) - yin.xiaob@northeastern.edu
+- Chenru Wu - [@wuchenru](https://github.com/wuchenru) - wu.chenru@northeastern.edu
 
 Project Link: [https://github.com/NEU-CS5610-2022-01-VAN/joberry](https://github.com/NEU-CS5610-2022-01-VAN/joberry)
 
