@@ -119,7 +119,6 @@ Homepage:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
 <!-- FRONTEND -->
 ## Frontend
 ### Frontend File Structure
@@ -176,6 +175,8 @@ Homepage:
 
 ```
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Backend
 
 ### Backend File Structue
@@ -229,6 +230,8 @@ POST "/berries/"              //create a new berry on a post
 DELETE "/berries/:id"         //delete a berry with id
 
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- CONTACT -->
