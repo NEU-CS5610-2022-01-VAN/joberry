@@ -190,27 +190,44 @@ Homepage:
 
 ### Backend Routes
 ```js
-//basic API without authorization check
+//post routes without authorization check
 
-GET "/posts"
-GET "/posts/:id"
+GET "/posts"                   //get all posts
+GET "/posts/:id"               //get detail of a post
+POST "/posts/search"           //search for posts
 
-GET "/users/:id"
+//post routes with authorization check
+POST "/posts/"                 //create a new post
+PUT "/posts/:id"               //update a post with id
+DELETE "/posts/:id"            //delete a post with id
 
-GET "/discover/"
-"/search/:search"
+//user routes without authorization check
+GET "/users/:id"               //get user detail with id
 
+//user routes with authorization check
+POST "/users/verify-user"      //verify a user
+GET "/users/profile"           //get profile of a logged in user
+PUT "/users/profile"           //update profile of a logged in user
+DELETE"/users/account"         //delete account of a user
 
-"/verify-user"
+//discover routes without authorization check
+POST "/discover/hot"           //get the posts that have most comments over the past week
+POST "/discover/most-berries"  //get the posts that have most berries over the past week
 
-//
-"/posts/new"
-"/posts/edit/:id"
-"/profile"
-"/profile/settings"
+//comment routes without authorization check
+GET "/comments"                //get all comments of a post
 
-// not found route
-"/404"
+//comment routes with authorization check
+POST "/comments/"              //create a new comment on a post
+DELETE "/comments/:id"         //delete a comment with id
+
+//berry routes without authorization check
+GET "/berries"                //get all berries of a post
+
+//berry routes with authorization check
+POST "/berries/"              //create a new berry on a post
+DELETE "/berries/:id"         //delete a berry with id
+
 ```
 
 
